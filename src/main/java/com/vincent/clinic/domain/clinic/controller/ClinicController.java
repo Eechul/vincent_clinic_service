@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/clinic")
 public class ClinicController {
 
     @GetMapping("")
@@ -15,16 +15,18 @@ public class ClinicController {
         return "index";
     }
 
-    @GetMapping("/clinic/add")
+    @GetMapping("/search")
+    public String search() {
+        return "search";
+    }
+
+    @GetMapping("/add")
     public String add(Model model) {
         return "add";
     }
 
-    @GetMapping("/clinic/{no}/edit")
-    public String edit(
-            Model model,
-            @PathVariable Long no
-    ) {
+    @GetMapping("/{no}/edit")
+    public String edit(Model model, @PathVariable Long no) {
         model.addAttribute("no", no);
         return "add";
     }
