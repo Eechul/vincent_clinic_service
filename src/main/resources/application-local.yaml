@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/clinic-service
+    username: sa
+    password:
+
+  thymeleaf:
+    cache: false
