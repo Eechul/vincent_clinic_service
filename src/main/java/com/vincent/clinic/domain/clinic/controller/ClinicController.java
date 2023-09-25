@@ -11,22 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ClinicController {
 
     @GetMapping("")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("name", "home");
         return "index";
     }
 
     @GetMapping("/search")
-    public String search() {
+    public String search(Model model) {
+        model.addAttribute("name", "search");
         return "search";
+
     }
 
     @GetMapping("/add")
     public String add(Model model) {
+        model.addAttribute("name", "add");
         return "add";
     }
 
     @GetMapping("/{no}/edit")
     public String edit(Model model, @PathVariable Long no) {
+        model.addAttribute("name", "edit");
         model.addAttribute("no", no);
         return "add";
     }
