@@ -6,15 +6,16 @@
         <h2 class="h2">진료일지 검색(진료일지 목록과 같이 쓰면 되지 않을까 하는 개인적인 생각)</h2>
     </div>
     <div class="input-group mb-3">
-        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-        </ul>
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+        <select class="form-select" style="flex: 0 1 200px;">
+            <option selected>검색할 열을 선택</option>
+            <option value="">환자번호</option>
+            <option value="2">환자명</option>
+            <option value="3">담당의</option>
+            <option value="3">진료일자</option>
+            <option value="3">진료내용</option>
+            <option value="3">기타</option>
+        </select>
+        <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
