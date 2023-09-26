@@ -16,6 +16,15 @@ public class ClinicController {
         return "index";
     }
 
+    @GetMapping("/{no}")
+    public String clinicContent(
+            @PathVariable Long no,
+            Model model
+    ) {
+        model.addAttribute("name", "home");
+        return "index";
+    }
+
     @GetMapping("/search")
     public String search(Model model) {
         model.addAttribute("name", "search");
