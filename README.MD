@@ -14,7 +14,7 @@
 ## ⬇ 진행 순서
 * 초기 기획(ChoiGodpa [완])
 * 초기 UI 프로토타입(나 [완])
-  * cloudtype으로 1차적인 프론트 전달[완]
+  * [cloudtype](https://cloudtype.io/)으로 1차적인 프론트 전달[완]
   * 피드백[미완]
 * UI 프로토타입 검증(같이 [미완])
 * 백엔드 & 인프라 개발(나, ChoiGodpa)
