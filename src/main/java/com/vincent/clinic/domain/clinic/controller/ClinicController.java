@@ -22,7 +22,7 @@ public class ClinicController {
             Model model
     ) {
         model.addAttribute("name", "home");
-        return "index";
+        return "content";
     }
 
     @GetMapping("/search")

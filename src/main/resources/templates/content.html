@@ -3,38 +3,32 @@
 <head></head>
 <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h2 class="h2">진료일지 [[${no eq null ? '작성' : '수정'}]]</h2>
+    <h2 class="h2">진료일지 열람</h2>
   </div>
   <div>
     <form>
       <div class="d-flex justify-content-end">
-        <th:block th:if="${no eq null}">
-          <button type="submit" class="btn btn-primary">작성</button>
-        </th:block>
-        <th:block th:unless="${no eq null}">
-          <button type="submit" class="btn btn-primary">수정</button>
-          <button type="button" class="btn btn-danger ms-1">삭제</button>
-        </th:block>
+          <a href="/clinic/1/edit" class="btn btn-primary">수정</a>
       </div>
       <div class="mb-3">
         <label for="patient-name" class="form-label">환자번호</label>
-        <input type="text" class="form-control" id="patient-number" value="19999">
+        <input type="text" class="form-control-plaintext" id="patient-number" value="19999">
       </div>
       <div class="mb-3">
         <label for="patient-name" class="form-label">환자명</label>
-        <input type="text" class="form-control" id="patient-name" value="이동철">
+        <input type="text" class="form-control-plaintext" id="patient-name" value="이동철" readonly>
       </div>
       <div class="mb-3">
         <label for="doctor-name" class="form-label">담당의</label>
-        <input type="text" class="form-control" id="doctor-name" value="최정효">
+        <input type="text" class="form-control-plaintext" id="doctor-name" value="최정효" readonly>
       </div>
       <div class="mb-3">
         <label for="clinic-date" class="form-label">진료일</label>
-        <input type="date" class="form-control" id="clinic-date" value="2023-09-27">
+        <input type="date" class="form-control-plaintext" id="clinic-date" value="2023-09-26" readonly>
       </div>
       <div class="mb-3">
         <label for="clinic-content" class="form-label">진료 내용</label>
-        <textarea class="form-control" id="clinic-content" rows="20">
+        <textarea class="form-control" id="clinic-content" rows="20" readonly>
           진료일지 열람에서의 내용입니다.
         </textarea>
       </div>
