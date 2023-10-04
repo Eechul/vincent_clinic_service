@@ -25,13 +25,6 @@ public class ClinicController {
         return "content";
     }
 
-    @GetMapping("/search")
-    public String search(Model model) {
-        model.addAttribute("name", "search");
-        return "search";
-
-    }
-
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("name", "add");
