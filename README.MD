@@ -36,7 +36,7 @@
 - [gitmoji](https://gitmoji.dev/) 를 처음 써봅니다.
 
 ## ⚙️ 기술 스택
-- 프론트: Thymleaf, html, css, javascript(vanilla.js)
+- 프론트: thymleaf, html, css, javascript(vanilla.js)
 
 - 백엔드: spring boot, spring security, jpa, querydsl, springDocs-openapi(+swagger-ui), junit
 
