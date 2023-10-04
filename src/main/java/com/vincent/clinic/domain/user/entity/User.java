@@ -3,8 +3,8 @@ package com.vincent.clinic.domain.user.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+@Table(name = "VC_USER")
 @Entity
-@Table(name = "USER")
 @Getter
 public class User {
 

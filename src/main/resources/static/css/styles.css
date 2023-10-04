@@ -2,3 +2,6 @@ body { font-size: 0.875rem; }
 
 .sidebar .nav-link { font-weight: 500; color: #333; }
 .sidebar .nav-link.active { color: #2470dc }
+
+.clinic-board { table-layout: fixed;}
+.clinic-board tr > td { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
