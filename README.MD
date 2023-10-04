@@ -35,10 +35,10 @@
 - 그래서 부담이 없으면서 안써본 기술 및 보조도구를 써보려 노력하려 합니다.
 - [gitmoji](https://gitmoji.dev/) 를 처음 써봅니다.
 
-## ⚙️ 기술스택
+## ⚙️ 기술 스택
 - 프론트: Thymleaf, html, css, javascript(vanilla.js)
 
-- 백엔드: spring boot, spring security, jpa, querydsl, swaggerui, junit
+- 백엔드: spring boot, spring security, jpa, querydsl, springDocs-openapi(+swagger-ui), junit
 
 - 인프라: 윈도우10 환경으로 논의중
 
