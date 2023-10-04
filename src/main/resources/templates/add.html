@@ -7,7 +7,7 @@
   </div>
   <div>
     <form>
-      <div class="d-flex justify-content-end">
+      <div class="d-flex justify-content-end mb-3">
         <th:block th:if="${no eq null}">
           <button type="submit" class="btn btn-primary">작성</button>
         </th:block>
@@ -16,24 +16,24 @@
           <button type="button" class="btn btn-danger ms-1">삭제</button>
         </th:block>
       </div>
-      <div class="mb-3">
-        <label for="patient-name" class="form-label">환자번호</label>
+      <div class="input-group mb-3">
+        <label for="patient-name" class="input-group-text">환자번호</label>
         <input type="text" class="form-control" id="patient-number" value="19999">
       </div>
-      <div class="mb-3">
-        <label for="patient-name" class="form-label">환자명</label>
+      <div class="input-group mb-3">
+        <label for="patient-name" class="input-group-text">환자명</label>
         <input type="text" class="form-control" id="patient-name" value="이동철">
       </div>
-      <div class="mb-3">
-        <label for="doctor-name" class="form-label">담당의</label>
+      <div class="input-group mb-3">
+        <label for="doctor-name" class="input-group-text">담당의</label>
         <input type="text" class="form-control" id="doctor-name" value="최정효">
       </div>
-      <div class="mb-3">
-        <label for="clinic-date" class="form-label">진료일</label>
+      <div class="input-group mb-3">
+        <label for="clinic-date" class="input-group-text">진료일</label>
         <input type="date" class="form-control" id="clinic-date" value="2023-09-27">
       </div>
-      <div class="mb-3">
-        <label for="clinic-content" class="form-label">진료 내용</label>
+      <div class="input-group mb-3">
+        <label for="clinic-content" class="input-group-text">진료 내용</label>
         <textarea class="form-control" id="clinic-content" rows="20">
           진료일지 열람에서의 내용입니다.
         </textarea>
