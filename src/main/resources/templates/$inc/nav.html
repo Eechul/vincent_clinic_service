@@ -5,23 +5,35 @@
                 <a class="nav-link" th:classappend="${name eq 'patient-accept'} ? 'active'" href="/patient/accept">
                     접수처
                 </a>
-                <a class="nav-link" th:classappend="${name eq 'home'} ? 'active'" href="/clinic">
+                <a class="nav-link" th:classappend="${name.startsWith('clinic')} ? 'active'" href="#">
                     진료일지 목록
                 </a>
                 <ul class="nav flex-column ps-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="/clinic/1">내과</a>
-                        <a class="nav-link" href="/clinic/1">정형외과</a>
-                        <a class="nav-link" href="/clinic/1">치과</a>
-                        <a class="nav-link" href="/clinic/1">산부인과</a>
+                        <a class="nav-link" th:each="department, i : ${navDepartments}"
+                           th:href="|/clinic/${department.path}|"
+                           th:classappend="${name.endsWith(department.path)} ? 'active'"
+                        >[[${department.name}]]</a>
                     </li>
                 </ul>
             </li>
-            <!--      <li class="nav-item">-->
-            <!--        <a class="nav-link" th:classappend="${name eq 'add' || name eq 'edit'} ? 'active'" href="/clinic/add">-->
-            <!--          진료일지 작성-->
-            <!--        </a>-->
-            <!--      </li>-->
+            <li class="nav-item">
+                <div class="input-group mb-3">
+                    <!--                    <select class="form-select">-->
+                    <!--                        <option selected>검색할 열을 선택</option>-->
+                    <!--                        <option value="">환자번호</option>-->
+                    <!--                        <option value="2">환자명</option>-->
+                    <!--                        <option value="3">담당의</option>-->
+                    <!--                        <option value="3">진료일자</option>-->
+                    <!--                        <option value="3">진료내용</option>-->
+                    <!--                        <option value="3">기타</option>-->
+                    <!--                    </select>-->
+                    <input type="text" class="form-control" placeholder="환자번호 입력"
+                           aria-label="Example text with button addon"
+                           aria-describedby="button-addon1">
+                    <button class="btn btn-outline-secondary" type="button">전체검색</button>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
