@@ -24,10 +24,10 @@ class DepartmentRepositoryTest extends GenerateIntegrationTest {
     void findDepartment() {
         // given
         departmentRepository.saveAll(Arrays.asList(
-                Department.create("내과", "내과 입니다."),
-                Department.create("정형외과", "정형외과 입니다."),
-                Department.create("치과", "치과 입니다."),
-                Department.create("산부인과", "산부인과 입니다.")
+                Department.create("internal", "내과", "내과 입니다."),
+                Department.create("orthopedics", "정형외과", "정형외과 입니다."),
+                Department.create("dentist", "치과", "치과 입니다."),
+                Department.create("obstetrics", "산부인과", "산부인과 입니다.")
         ));
 
         // when
