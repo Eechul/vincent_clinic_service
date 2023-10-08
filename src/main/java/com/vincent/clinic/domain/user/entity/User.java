@@ -12,7 +12,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    private Long no;
 
     private String password;
 
