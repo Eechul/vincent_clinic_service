@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head></head>
+<main class="col-md-10 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h2 class="h2">접수하기</h2>
+  </div>
+  <div>
+    <form>
+      <div class="input-group align-items-center mb-3">
+          <label for="patient-number" class="input-group-text">과 선택</label>
+        <div class="btn-group align-middle ms-3">
+            <div class="form-check form-check-inline" th:each="department, i : ${departments}">
+                <input type="checkbox" class="form-check-input" th:id="${'department'+i.index}" name="department" autocomplete="off">
+                <label class="form-check-label" th:for="${'department'+i.index}">[[${department.name}]]</label>
+            </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <label for="patient-number" class="input-group-text">환자번호</label>
+        <input type="text" class="form-control" id="patient-number" value="19999">
+      </div>
+      <div class="input-group mb-3">
+        <label for="patient-name" class="input-group-text">환자명</label>
+        <input type="text" class="form-control" id="patient-name" value="이동철">
+      </div>
+    </form>
+
+  </div>
+<!--  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">-->
+<!--      <h2 class="h2">최근 접수사항</h2>-->
+<!--  </div>-->
+</main>
+</body>
+</html>
