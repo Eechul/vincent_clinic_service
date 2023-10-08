@@ -10,19 +10,22 @@ import lombok.ToString;
 public class DepartmentDto {
 
     private Long no;
+    private String path;
     private String name;
     private String description;
 
     @Builder
-    private DepartmentDto(Long no, String name, String description) {
+    private DepartmentDto(Long no, String path, String name, String description) {
         this.no = no;
+        this.path = path;
         this.name = name;
         this.description = description;
     }
 
-    public static DepartmentDto of(Long no, String name, String description) {
+    public static DepartmentDto of(Long no, String path, String name, String description) {
         return DepartmentDto.builder()
                 .no(no)
+                .path(path)
                 .name(name)
                 .description(description)
                 .build();

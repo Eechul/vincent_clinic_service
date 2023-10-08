@@ -8,4 +8,5 @@ public interface DepartmentService {
 
     List<DepartmentDto> findAll();
 
+    DepartmentDto findOneByPath(String department);
 }

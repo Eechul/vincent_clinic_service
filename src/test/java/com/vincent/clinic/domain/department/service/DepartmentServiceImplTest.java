@@ -37,6 +37,19 @@ class DepartmentServiceImplTest extends GenerateIntegrationTest {
 
     }
 
+    @DisplayName("부서 path로 조회")
+    @Test
+    void findOneByPath() {
+        // given
+        List<Department> departments = createDepartments();
+
+        // when, then
+        departments.forEach(department -> {
+            DepartmentDto result = departmentService.findOneByPath(department.getPath());
+            assertThat(result).isNotNull();
+        });
+    }
+
     public List<Department> createDepartments() {
         return departmentRepo.saveAll(departments());
     }
@@ -49,4 +62,5 @@ class DepartmentServiceImplTest extends GenerateIntegrationTest {
                 Department.create("obstetrics", "산부인과", "산부인과 입니다.")
         );
     }
+
 }

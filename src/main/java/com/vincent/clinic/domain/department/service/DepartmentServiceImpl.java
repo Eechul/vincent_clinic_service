@@ -7,7 +7,6 @@ import com.vincent.clinic.domain.department.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +24,13 @@ public class DepartmentServiceImpl implements DepartmentService{
             throw new NotFoundDepartmentException();
         }
         return departments.stream().map(department ->
-            DepartmentDto.of(department.getNo(), department.getName(), department.getDescription())
+            DepartmentDto.of(department.getNo(), department.getPath(), department.getName(), department.getDescription())
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public DepartmentDto findOneByPath(String department) {
+        return findAll().stream().filter(departmentDto -> departmentDto.getPath().equals(department))
+                .findFirst().orElseThrow(NotFoundDepartmentException::new);
     }
 }
