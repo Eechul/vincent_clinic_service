@@ -17,7 +17,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class Clinic extends BaseEntity {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    private Long no;
 
     @Column(name = "PATIENT_NUMBER")
     private String patientNumber;
