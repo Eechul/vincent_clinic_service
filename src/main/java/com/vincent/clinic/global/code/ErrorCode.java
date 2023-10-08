@@ -11,7 +11,10 @@ public enum ErrorCode {
     INVALID_REQUEST_VALUE(400, "CM008", "잘못된 요청입니다."),
 
     // User
-    USER_NOT_FOUND(400, "USR001", "유저를 찾을 수 없습니다.")
+    USER_NOT_FOUND(400, "USR001", "유저를 찾을 수 없습니다."),
+
+    // Department
+    DEPARTMENT_NOT_FOUND(400, "DEP001", "부서를 찾을 수 없습니다.")
     ;
 
     private final int status;
