@@ -14,8 +14,10 @@ public enum ErrorCode {
     USER_NOT_FOUND(400, "USR001", "유저를 찾을 수 없습니다."),
 
     // Department
-    DEPARTMENT_NOT_FOUND(400, "DEP001", "부서를 찾을 수 없습니다.")
-    ;
+    DEPARTMENT_NOT_FOUND(400, "DEP001", "부서를 찾을 수 없습니다."),
+
+    // Patient
+    PATIENT_NOT_FOUND(400, "PAT001", "환자를 찾을 수 없습니다.");
 
     private final int status;
     private final String code;
