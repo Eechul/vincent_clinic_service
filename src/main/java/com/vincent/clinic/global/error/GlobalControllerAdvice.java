@@ -1,17 +1,21 @@
 package com.vincent.clinic.global.error;
 
+import com.vincent.clinic.global.annotation.DController;
 import com.vincent.clinic.global.code.ErrorCode;
 import com.vincent.clinic.global.error.exception.BusinessException;
 import com.vincent.clinic.global.view.AlertView;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@ControllerAdvice(annotations = { Controller.class })
+@ControllerAdvice(annotations = DController.class)
 public class GlobalControllerAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -34,4 +38,6 @@ public class GlobalControllerAdvice {
         mv.addObject("message", message);
         return mv;
     }
+
+
 }

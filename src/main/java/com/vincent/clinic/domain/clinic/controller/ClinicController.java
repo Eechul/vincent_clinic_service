@@ -4,6 +4,7 @@ import com.vincent.clinic.domain.clinic.dto.ClinicAcceptRequest;
 import com.vincent.clinic.domain.clinic.service.ClinicService;
 import com.vincent.clinic.domain.department.dto.DepartmentDto;
 import com.vincent.clinic.domain.department.service.DepartmentService;
+import com.vincent.clinic.global.annotation.DController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Clinic", description = "진료일지에 관한 API")
-@Controller
+@DController
 @RequestMapping("/clinic")
 @RequiredArgsConstructor
 public class ClinicController {

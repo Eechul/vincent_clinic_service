@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
-<head></head>
+<head>
+    <script type="text/javascript" src="/libs/axios.min.js"></script>
+</head>
 <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2 class="h2">접수하기</h2>
@@ -23,8 +25,9 @@
             <div class="input-group mb-3">
                 <label for="patientNumber" class="input-group-text">환자번호</label>
                 <input type="text" class="form-control" id="patientNumber" name="patientNumber" value="" required>
+                <button class="btn btn-outline-secondary" type="button" onclick="checkPatient()">환자 찾기</button>
             </div>
-            <div class="input-group mb-3">
+            <div id="patientNameGroup" class="input-group mb-3" style="display: none;">
                 <label for="patientName" class="input-group-text">환자명</label>
                 <input type="text" class="form-control" id="patientName" name="patientName" value="" required>
             </div>
@@ -47,15 +50,46 @@
             alert("과를 선택해주세요.");
             return false;
         }
-        if (document.getElementById("patientNumber").value.trim() === "") {
+        let number = document.getElementById("patientNumber").value.trim();
+        let name = document.getElementById("patientName").value.trim();
+        if (number === "") {
             alert("환자번호를 입력해주세요.");
             return false;
         }
-        if (document.getElementById("patientName").value.trim() === "") {
+        if (!isFinite(number)) {
+            alert("환자번호는 숫자만 입력해주세요.");
+            return false;
+        }
+        if (name === "") {
             alert("환자명을 입력해주세요.");
             return false;
         }
 
+        return true;
+    }
+
+    const checkPatient = () => {
+        let number = document.getElementById("patientNumber").value.trim();
+        if (number === "") {
+            alert("환자번호를 입력해주세요.");
+            return false;
+        }
+        if (!isFinite(number)) {
+            alert("환자번호는 숫자만 입력해주세요.");
+            return false;
+        }
+        axios.post("/api/v1/patient/check", { patientNumber: Number(number) })
+            .then((resp) => {
+                console.log(resp);
+            })
+            .catch((err) => {
+                if (err.response.data.code === "PAT001") {
+                    alert("기존 환자가 없습니다. 환자명을 입력해주세요.");
+                    document.getElementById("patientNumber").readOnly = true;
+                    document.getElementById("patientNameGroup").style.display = "flex";
+                }
+
+            });
         return true;
     }
 </script>

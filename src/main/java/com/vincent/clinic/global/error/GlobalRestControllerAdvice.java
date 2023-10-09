@@ -1,7 +1,10 @@
 package com.vincent.clinic.global.error;
 
+import com.vincent.clinic.global.annotation.DRestController;
 import com.vincent.clinic.global.code.ErrorCode;
 import com.vincent.clinic.global.error.exception.BusinessException;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -9,9 +12,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
-@ControllerAdvice(annotations = { RestController.class })
+@RestControllerAdvice(annotations = DRestController.class)
 public class GlobalRestControllerAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -28,6 +32,7 @@ public class GlobalRestControllerAdvice {
 
     @ExceptionHandler(BusinessException.class)
     protected ResponseEntity<ErrorResponse> handleBusinessException(final BusinessException e) {
+        System.out.println("handleBusinessException");
         final ErrorCode errorCode = e.getErrorCode();
         final ErrorResponse response = ErrorResponse.of(errorCode);
         return new ResponseEntity<>(response, HttpStatus.valueOf(errorCode.getStatus()));
