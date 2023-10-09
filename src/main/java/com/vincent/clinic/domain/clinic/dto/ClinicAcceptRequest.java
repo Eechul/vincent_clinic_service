@@ -15,7 +15,7 @@ public class ClinicAcceptRequest {
     @NotNull(message = "과를 선택해주세요.")
     private List<Long> department;
     @NotBlank(message = "환자번호를 입력해주세요.")
-    private String patientNumber;
+    private Integer patientNumber;
     @NotBlank(message = "환자이름을 입력해주세요.")
     private String patientName;
 
