@@ -6,27 +6,27 @@
         <h2 class="h2">접수하기</h2>
     </div>
     <div>
-        <form action="/clinic/">
+        <form method="post" action="/clinic/accept" onsubmit="return doAccept()">
             <div class="d-flex justify-content-end mb-3">
                 <button type="submit" class="btn btn-primary">작성</button>
             </div>
             <div class="input-group align-items-center mb-3">
-                <label for="patient-number" class="input-group-text">과 선택</label>
+                <label class="input-group-text">과 선택</label>
                 <div class="btn-group align-middle ms-3">
-                    <div class="form-check form-check-inline" th:each="department, i : ${departments}">
+                    <div class="form-check form-check-inline" th:each="department, i : ${clinicDepartments}">
                         <input type="checkbox" class="form-check-input" th:id="${'department'+i.index}"
-                               name="department" autocomplete="off">
+                               name="department" autocomplete="off" th:value="${department.no}">
                         <label class="form-check-label" th:for="${'department'+i.index}">[[${department.name}]]</label>
                     </div>
                 </div>
             </div>
             <div class="input-group mb-3">
-                <label for="patient-number" class="input-group-text">환자번호</label>
-                <input type="text" class="form-control" id="patient-number" value="19999">
+                <label for="patientNumber" class="input-group-text">환자번호</label>
+                <input type="text" class="form-control" id="patientNumber" name="patientNumber" value="" required>
             </div>
             <div class="input-group mb-3">
-                <label for="patient-name" class="input-group-text">환자명</label>
-                <input type="text" class="form-control" id="patient-name" value="이동철">
+                <label for="patientName" class="input-group-text">환자명</label>
+                <input type="text" class="form-control" id="patientName" name="patientName" value="" required>
             </div>
         </form>
 
@@ -35,5 +35,28 @@
     <!--      <h2 class="h2">최근 접수사항</h2>-->
     <!--  </div>-->
 </main>
-</body>
+<script type="text/javascript" layout:fragment="page-script">
+    const doAccept = () => {
+        const chkDepartments = [];
+        document.getElementsByName("department").forEach((department) => {
+            if (department.checked) {
+                chkDepartments.push(department.value);
+            }
+        });
+        if (chkDepartments.length === 0) {
+            alert("과를 선택해주세요.");
+            return false;
+        }
+        if (document.getElementById("patientNumber").value.trim() === "") {
+            alert("환자번호를 입력해주세요.");
+            return false;
+        }
+        if (document.getElementById("patientName").value.trim() === "") {
+            alert("환자명을 입력해주세요.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
 </html>

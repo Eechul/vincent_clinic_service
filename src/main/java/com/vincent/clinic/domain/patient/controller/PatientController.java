@@ -24,7 +24,6 @@ public class PatientController {
     @GetMapping("/accept")
     public String accept(Model model) {
         model.addAttribute("name", "patient-accept");
-        model.addAttribute("departments", departmentService.findAll());
         return "accept";
     }
 

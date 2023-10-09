@@ -3,8 +3,10 @@ package com.vincent.clinic.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -22,6 +24,7 @@ public class VincentClinicSecurityConfig {
 //            .anyRequest().authenticated()
                     .anyRequest().permitAll() // 개발중 이므로, 모든 페이지를 열어둔다.
                 )
+                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/")

@@ -10,7 +10,7 @@
                 </a>
                 <ul class="nav flex-column ps-3">
                     <li class="nav-item">
-                        <a class="nav-link" th:each="department, i : ${navDepartments}"
+                        <a class="nav-link" th:each="department, i : ${clinicDepartments}"
                            th:href="|/clinic/${department.path}|"
                            th:classappend="${name.endsWith(department.path)} ? 'active'"
                         >[[${department.name}]]</a>
@@ -28,10 +28,10 @@
                     <!--                        <option value="3">진료내용</option>-->
                     <!--                        <option value="3">기타</option>-->
                     <!--                    </select>-->
-                    <input type="text" class="form-control" placeholder="환자번호 입력"
-                           aria-label="Example text with button addon"
-                           aria-describedby="button-addon1">
-                    <button class="btn btn-outline-secondary" type="button">전체검색</button>
+<!--                    <input type="text" class="form-control" placeholder="환자번호 입력"-->
+<!--                           aria-label="Example text with button addon"-->
+<!--                           aria-describedby="button-addon1">-->
+<!--                    <button class="btn btn-outline-secondary" type="button">전체검색</button>-->
                 </div>
             </li>
         </ul>

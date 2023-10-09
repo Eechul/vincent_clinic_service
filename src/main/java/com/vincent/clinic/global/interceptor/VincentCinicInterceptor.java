@@ -19,7 +19,7 @@ public class VincentCinicInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         List<DepartmentDto> clinicDepartments = departmentService.findAll();
-        request.setAttribute("navDepartments", clinicDepartments);
+        request.setAttribute("clinicDepartments", clinicDepartments);
         return true;
     }
 
