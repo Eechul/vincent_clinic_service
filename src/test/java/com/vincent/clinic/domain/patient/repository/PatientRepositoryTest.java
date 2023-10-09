@@ -19,10 +19,10 @@ class PatientRepositoryTest extends GenerateIntegrationTest {
     @Test
     void addPatient() {
         // given, when
-        Patient patient = patientRepository.save(Patient.create("10000", "이동철"));
+        Patient patient = patientRepository.save(Patient.create(10000, "이동철"));
 
         // then
         assertThat(patient).isNotNull();
-        assertThat(patient).extracting("number", "name").contains("10000", "이동철");
+        assertThat(patient).extracting("number", "name").contains(10000, "이동철");
     }
 }

@@ -10,11 +10,11 @@ import lombok.ToString;
 @ToString
 public class PatientSaveServiceRequest {
 
-    private String number;
+    private Integer number;
     private String name;
 
     @Builder
-    public PatientSaveServiceRequest(String number, String name) {
+    public PatientSaveServiceRequest(Integer number, String name) {
         this.number = number;
         this.name = name;
     }

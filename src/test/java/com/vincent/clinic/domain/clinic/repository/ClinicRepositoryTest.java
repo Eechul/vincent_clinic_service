@@ -33,7 +33,7 @@ class ClinicRepositoryTest extends GenerateIntegrationTest {
         Optional<Department> internal = departmentRepo.findByPath("internal");
         Optional<Department> orthopedics = departmentRepo.findByPath("orthopedics");
         // 접수 환자
-        Patient patient = Patient.create("19999", "김철수");
+        Patient patient = Patient.create(19999, "김철수");
         createPatient(patient);
         // 진료일지 일부분 작성
         createClinic(Arrays.asList(
@@ -48,10 +48,10 @@ class ClinicRepositoryTest extends GenerateIntegrationTest {
         // then
         assertThat(clinics).isNotNull().hasSize(2);
         assertThat(clinics.get(0).getDepartment().getName()).isEqualTo("내과");
-        assertThat(clinics.get(0).getPatient().getNumber()).isEqualTo("19999");
+        assertThat(clinics.get(0).getPatient().getNumber()).isEqualTo(19999);
         assertThat(clinics.get(0).getPatient().getName()).isEqualTo("김철수");
         assertThat(clinics.get(1).getDepartment().getName()).isEqualTo("정형외과");
-        assertThat(clinics.get(1).getPatient().getNumber()).isEqualTo("19999");
+        assertThat(clinics.get(1).getPatient().getNumber()).isEqualTo(19999);
         assertThat(clinics.get(1).getPatient().getName()).isEqualTo("김철수");
     }
 

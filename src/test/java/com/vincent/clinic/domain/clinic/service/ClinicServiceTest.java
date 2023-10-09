@@ -38,7 +38,7 @@ class ClinicServiceTest extends GenerateIntegrationTest {
         // given
         ClinicAcceptServiceRequest serviceRequest = ClinicAcceptServiceRequest.builder()
                 .department(List.of(1L))
-                .patientNumber("19999")
+                .patientNumber(19999)
                 .patientName("김철수")
                 .build();
 
@@ -59,7 +59,7 @@ class ClinicServiceTest extends GenerateIntegrationTest {
         // given
         ClinicAcceptServiceRequest serviceRequest = ClinicAcceptServiceRequest.builder()
                 .department(List.of(1L, 2L))
-                .patientNumber("19999")
+                .patientNumber(19999)
                 .patientName("김철수")
                 .build();
 

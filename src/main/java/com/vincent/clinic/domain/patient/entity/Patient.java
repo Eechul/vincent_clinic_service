@@ -19,18 +19,18 @@ public class Patient extends BaseEntity {
     private Long no;
 
     @Column(name = "NUMBER", unique = true)
-    private String number;
+    private Integer number;
 
     @Column(name = "NAME")
     private String name;
 
     @Builder
-    private Patient(String number, String name) {
+    private Patient(Integer number, String name) {
         this.number = number;
         this.name = name;
     }
 
-    public static Patient create(String number, String name) {
+    public static Patient create(Integer number, String name) {
         return Patient.builder()
                 .number(number)
                 .name(name)

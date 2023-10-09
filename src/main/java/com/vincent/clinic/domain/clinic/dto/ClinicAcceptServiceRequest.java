@@ -12,17 +12,17 @@ import java.util.List;
 public class ClinicAcceptServiceRequest {
 
     private List<Long> department;
-    private String patientNumber;
+    private Integer patientNumber;
     private String patientName;
 
     @Builder
-    private ClinicAcceptServiceRequest(List<Long> department, String patientNumber, String patientName) {
+    private ClinicAcceptServiceRequest(List<Long> department, Integer patientNumber, String patientName) {
         this.department = department;
         this.patientNumber = patientNumber;
         this.patientName = patientName;
     }
 
-    public static ClinicAcceptServiceRequest of(List<Long> department, String patientNumber, String patientName) {
+    public static ClinicAcceptServiceRequest of(List<Long> department, Integer patientNumber, String patientName) {
         return ClinicAcceptServiceRequest.builder()
                 .department(department)
                 .patientNumber(patientNumber)
