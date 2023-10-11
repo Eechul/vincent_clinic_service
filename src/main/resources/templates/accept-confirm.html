@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <script type="text/javascript" src="/libs/axios.min.js"></script>
+</head>
+<main class="col-md-10 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h2">접수하기</h2>
+    </div>
+    <div>
+        <div class="alert alert-success" role="alert">
+            [[${patientName}]]님의 접수가 완료됐습니다.
+        </div>
+        <div class="d-flex justify-content-end mb-3">
+            <button type="button" class="btn btn-primary" th:onclick="|location.replace('/patient/accept')|">돌아가기</button>
+        </div>
+    </div>
+</main>
+<script type="text/javascript" layout:fragment="page-script">
+</script>
+</html>

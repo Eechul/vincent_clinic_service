@@ -8,9 +8,11 @@ import com.vincent.clinic.global.annotation.DController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 @Tag(name = "Clinic", description = "진료일지에 관한 API")
 @DController
@@ -56,9 +58,9 @@ public class ClinicController {
     @PostMapping("/accept")
     public String accept(
             ClinicAcceptRequest request,
-            Model model) {
-        clinicService.accept(request.toServiceRequest());
-        return "redirect:/patient/accept?result=success";
+            Model model) throws UnsupportedEncodingException {
+        clinicService.accept(request.toService());
+        return "redirect:/patient/accept/success?patientName="+URLEncoder.encode(request.getPatientName(), "UTF-8");
     }
 
     @Operation(summary = "진료일지 수정 페이지")

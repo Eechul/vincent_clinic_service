@@ -21,6 +21,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class Clinic extends BaseEntity {
 
     @Id @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "NO")
     private Long no;
 
     @ManyToOne

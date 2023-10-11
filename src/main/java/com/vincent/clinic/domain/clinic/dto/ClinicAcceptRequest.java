@@ -19,7 +19,7 @@ public class ClinicAcceptRequest {
     @NotBlank(message = "환자이름을 입력해주세요.")
     private String patientName;
 
-    public ClinicAcceptServiceRequest toServiceRequest() {
+    public ClinicAcceptServiceRequest toService() {
         return ClinicAcceptServiceRequest.of(this.department, this.patientNumber, this.patientName);
     }
 }

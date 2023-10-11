@@ -12,6 +12,9 @@
             <div class="d-flex justify-content-end mb-3">
                 <button type="submit" class="btn btn-primary">작성</button>
             </div>
+            <div th:if="${result eq 'success'}" class="alert alert-success" role="alert">
+                님의 접수를 완료
+            </div>
             <div class="input-group align-items-center mb-3">
                 <label class="input-group-text">과 선택</label>
                 <div class="btn-group align-middle ms-3">
@@ -24,12 +27,13 @@
             </div>
             <div class="input-group mb-3">
                 <label for="patientNumber" class="input-group-text">환자번호</label>
-                <input type="text" class="form-control" id="patientNumber" name="patientNumber" value="" required>
-                <button class="btn btn-outline-secondary" type="button" onclick="checkPatient()">환자 찾기</button>
+                <input type="text" class="form-control" id="patientNumber" name="patientNumber" value="" required="required">
+                <button class="btn btn-outline-secondary" id="searchPatientBtn" type="button" onclick="checkPatient()">환자 찾기</button>
+                <button class="btn btn-outline-secondary" id="retryPatientBtn" type="button" onclick="retryPatient()" style="display: none">환자 다시 찾기</button>
             </div>
-            <div id="patientNameGroup" class="input-group mb-3" style="display: none;">
+            <div id="patientNameGroup" class="input-group mb-3">
                 <label for="patientName" class="input-group-text">환자명</label>
-                <input type="text" class="form-control" id="patientName" name="patientName" value="" required>
+                <input type="text" class="form-control" id="patientName" name="patientName" value="" disabled="disabled">
             </div>
         </form>
 
@@ -86,11 +90,23 @@
                 if (err.response.data.code === "PAT001") {
                     alert("기존 환자가 없습니다. 환자명을 입력해주세요.");
                     document.getElementById("patientNumber").readOnly = true;
-                    document.getElementById("patientNameGroup").style.display = "flex";
+                    document.getElementById("patientName").disabled = false;
+                    document.getElementById("searchPatientBtn").style.display = "none";
+                    document.getElementById("retryPatientBtn").style.display = "block";
                 }
 
             });
         return true;
+    }
+
+    const retryPatient = () => {
+        document.getElementById("patientNumber").readOnly = false;
+        document.getElementById("patientName").disabled = true;
+        document.getElementById("patientNumber").value = "";
+        document.getElementById("patientName").value = "";
+
+        document.getElementById("searchPatientBtn").style.display = "block";
+        document.getElementById("retryPatientBtn").style.display = "none";
     }
 </script>
 </html>
