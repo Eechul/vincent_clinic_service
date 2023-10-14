@@ -1,5 +1,6 @@
 package com.vincent.clinic.domain.clinic.entity;
 
+import com.vincent.clinic.domain.clinic.dto.ClinicDto;
 import com.vincent.clinic.domain.department.entity.Department;
 import com.vincent.clinic.domain.patient.entity.Patient;
 import com.vincent.clinic.global.entity.BaseEntity;
@@ -7,7 +8,6 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 
@@ -50,10 +50,23 @@ public class Clinic extends BaseEntity {
         this.patient = patient;
     }
 
+    public ClinicDto toDto() {
+        return ClinicDto.create(
+            this.no,
+            this.patient.getNo(),
+            this.patient.getName(),
+            this.doctorName,
+            this.clinicDate,
+            this.content,
+            this.otherContent
+        );
+    }
+
     public static Clinic createAcceptance(Department department, Patient patient) {
         return Clinic.builder()
                 .department(department)
                 .patient(patient)
                 .build();
     }
+
 }

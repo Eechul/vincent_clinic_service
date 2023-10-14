@@ -31,7 +31,6 @@ public class ClinicController {
     @Operation(summary = "진료일지 과별 메인 페이지(목록 페이지)")
     @GetMapping("/{path}")
     public String departmentIndex(@PathVariable String path, Model model) {
-        // TODO: 과별 진료일지 목록 출력하기
         DepartmentDto department = departmentService.findOneByPath(path);
         model.addAttribute("name", "clinic-"+department.getPath());
         model.addAttribute("department", department);
