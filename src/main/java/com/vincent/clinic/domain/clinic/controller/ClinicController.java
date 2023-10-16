@@ -8,6 +8,8 @@ import com.vincent.clinic.global.annotation.DController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,10 +32,17 @@ public class ClinicController {
 
     @Operation(summary = "진료일지 과별 메인 페이지(목록 페이지)")
     @GetMapping("/{path}")
-    public String departmentIndex(@PathVariable String path, Model model) {
+    public String departmentIndex(
+            @PathVariable String path,
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "20") Integer size,
+            Model model) {
         DepartmentDto department = departmentService.findOneByPath(path);
+        PageRequest pageRequest = PageRequest.of(page, size);
+        clinicService.pagingByDepartmentNo(department.getNo(), pageRequest);
         model.addAttribute("name", "clinic-"+department.getPath());
         model.addAttribute("department", department);
+        model.addAttribute("paging", pageRequest);
         return "index";
     }
 
