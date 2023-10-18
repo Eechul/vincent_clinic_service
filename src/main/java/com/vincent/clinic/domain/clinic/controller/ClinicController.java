@@ -1,10 +1,12 @@
 package com.vincent.clinic.domain.clinic.controller;
 
 import com.vincent.clinic.domain.clinic.dto.ClinicAcceptRequest;
+import com.vincent.clinic.domain.clinic.dto.ClinicDto;
 import com.vincent.clinic.domain.clinic.service.ClinicService;
 import com.vincent.clinic.domain.department.dto.DepartmentDto;
 import com.vincent.clinic.domain.department.service.DepartmentService;
 import com.vincent.clinic.global.annotation.DController;
+import com.vincent.clinic.global.model.Paging;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -35,14 +37,14 @@ public class ClinicController {
     public String departmentIndex(
             @PathVariable String path,
             @RequestParam(defaultValue = "0") Integer page,
-            @RequestParam(defaultValue = "20") Integer size,
+            @RequestParam(defaultValue = "1") Integer size,
             Model model) {
         DepartmentDto department = departmentService.findOneByPath(path);
         PageRequest pageRequest = PageRequest.of(page, size);
-        clinicService.pagingByDepartmentNo(department.getNo(), pageRequest);
+        Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(department.getNo(), pageRequest);
         model.addAttribute("name", "clinic-"+department.getPath());
         model.addAttribute("department", department);
-        model.addAttribute("paging", pageRequest);
+        model.addAttribute("datas", datas);
         return "index";
     }
 

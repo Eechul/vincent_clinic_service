@@ -10,12 +10,15 @@ import com.vincent.clinic.domain.department.repository.DepartmentRepository;
 import com.vincent.clinic.domain.patient.dto.PatientSaveServiceRequest;
 import com.vincent.clinic.domain.patient.entity.Patient;
 import com.vincent.clinic.domain.patient.service.PatientService;
+import com.vincent.clinic.global.model.Paging;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -27,9 +30,10 @@ public class ClinicServiceImpl implements ClinicService {
     private final ClinicRepository clinicRepo;
 
     @Override
-    public List<ClinicDto> pagingByDepartmentNo(Long departmentNo, Pageable paging) {
-        List<Clinic> result = clinicRepo.findByDepartmentNo(departmentNo, paging);
-        return null;
+    public Paging<ClinicDto> pagingByDepartmentNo(Long departmentNo, Pageable paging) {
+        Page<Clinic> result = clinicRepo.findByDepartmentNo(departmentNo, paging);
+        List<ClinicDto> datas = result.getContent().stream().map(Clinic::toDto).toList();
+        return new Paging<>(datas, result.getTotalPages(), result.getTotalElements(), result.getNumber()+1);
     }
 
     @Override

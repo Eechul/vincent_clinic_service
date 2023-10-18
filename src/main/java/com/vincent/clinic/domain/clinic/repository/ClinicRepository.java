@@ -12,6 +12,6 @@ import java.util.List;
 public interface ClinicRepository extends JpaRepository<Clinic, Long> {
 
 
-    List<Clinic> findByDepartmentNo(Long departmentNo, Pageable pageable);
+    Page<Clinic> findByDepartmentNo(Long departmentNo, Pageable pageable);
 
 }

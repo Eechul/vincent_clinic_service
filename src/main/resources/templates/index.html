@@ -42,37 +42,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td><a href="/clinic/1">19999</a></td>
-                <td>최정효</td>
-                <td>이동철</td>
-                <td>2023/08/16</td>
-                <td>진료내용1</td>
-                <td>기타내용1</td>
+            <tr th:each="data, iter : ${datas.datas}">
+                <td><a th:href="|/clinic/${data.no}|">[[${data.patientNo}]]</a></td>
+                <td>[[${data.patientName}]]</td>
+                <td>[[${data.doctorName}]]</td>
+                <td>[[${data.clinicDate}]]</td>
+                <td>[[${data.content}]]</td>
+                <td>[[${data.otherContent}]]</td>
                 <td>
-                    <a href="/clinic/1/edit">EDIT</a>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="/clinic/2">18989</a></td>
-                <td>최정효</td>
-                <td>이동철</td>
-                <td>2023/08/14</td>
-                <td>진료내용1</td>
-                <td>기타내용1</td>
-                <td>
-                    <a href="/clinic/2/edit">EDIT</a>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="/clinic/3">18989</a></td>
-                <td>최정효</td>
-                <td>이동철</td>
-                <td>2023/08/10</td>
-                <td>진료내용1</td>
-                <td>기타내용1</td>
-                <td>
-                    <a href="/clinic/2/edit">EDIT</a>
+                    <a th:href="|/clinic/${data.no}/edit|">EDIT</a>
                 </td>
             </tr>
             </tbody>
