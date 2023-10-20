@@ -53,8 +53,7 @@ public class Clinic extends BaseEntity {
     public ClinicDto toDto() {
         return ClinicDto.create(
             this.no,
-            this.patient.getNo(),
-            this.patient.getName(),
+            this.patient.toDto(),
             this.doctorName,
             this.clinicDate,
             this.content,

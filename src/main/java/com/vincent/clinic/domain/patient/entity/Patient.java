@@ -1,5 +1,6 @@
 package com.vincent.clinic.domain.patient.entity;
 
+import com.vincent.clinic.domain.clinic.dto.PatientDto;
 import com.vincent.clinic.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -28,6 +29,14 @@ public class Patient extends BaseEntity {
     private Patient(Integer number, String name) {
         this.number = number;
         this.name = name;
+    }
+
+    public PatientDto toDto() {
+        return PatientDto.create(
+            this.no,
+            this.number,
+            this.name
+        );
     }
 
     public static Patient create(Integer number, String name) {

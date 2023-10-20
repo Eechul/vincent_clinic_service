@@ -1,5 +1,6 @@
 package com.vincent.clinic.domain.clinic.dto;
 
+import com.vincent.clinic.domain.patient.entity.Patient;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,29 +13,26 @@ import java.time.LocalDate;
 public class ClinicDto {
 
     private Long no;
-    private Long patientNo;
-    private String patientName;
+    private PatientDto patient;
     private String doctorName;
     private LocalDate clinicDate;
     private String content;
     private String otherContent;
 
     @Builder
-    private ClinicDto(Long no, Long patientNo, String patientName, String doctorName, LocalDate clinicDate, String content, String otherContent) {
+    private ClinicDto(Long no, PatientDto patient, String doctorName, LocalDate clinicDate, String content, String otherContent) {
         this.no = no;
-        this.patientNo = patientNo;
-        this.patientName = patientName;
+        this.patient = patient;
         this.doctorName = doctorName;
         this.clinicDate = clinicDate;
         this.content = content;
         this.otherContent = otherContent;
     }
 
-    public static ClinicDto create(Long no, Long patientNo, String patientName, String doctorName, LocalDate clinicDate, String content, String otherContent) {
+    public static ClinicDto create(Long no, PatientDto patient, String doctorName, LocalDate clinicDate, String content, String otherContent) {
         return ClinicDto.builder()
                 .no(no)
-                .patientNo(patientNo)
-                .patientName(patientName)
+                .patient(patient)
                 .doctorName(doctorName)
                 .clinicDate(clinicDate)
                 .content(content)
