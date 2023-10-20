@@ -43,8 +43,8 @@
             </thead>
             <tbody>
             <tr th:each="data, iter : ${datas.datas}">
-                <td><a th:href="|/clinic/${data.no}|">[[${data.patientNo}]]</a></td>
-                <td>[[${data.patientName}]]</td>
+                <td><a th:href="|/clinic/${data.no}|">[[${data.patient.number}]]</a></td>
+                <td>[[${data.patient.name}]]</td>
                 <td>[[${data.doctorName}]]</td>
                 <td>[[${data.clinicDate}]]</td>
                 <td>[[${data.content}]]</td>
