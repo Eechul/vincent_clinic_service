@@ -1,6 +1,5 @@
 package com.vincent.clinic.domain.clinic.dto;
 
-import com.vincent.clinic.domain.patient.entity.Patient;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
