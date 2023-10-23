@@ -85,6 +85,13 @@
         axios.post("/api/v1/patient/check", { patientNumber: Number(number) })
             .then((resp) => {
                 console.log(resp);
+                const result = resp.data.data;
+                document.getElementById("patientName").value = result.name;
+                document.getElementById("patientName").disabled = false;
+                document.getElementById("patientName").readOnly = true;
+                document.getElementById("patientNumber").readOnly = true;
+                document.getElementById("searchPatientBtn").style.display = "none";
+                document.getElementById("retryPatientBtn").style.display = "block";
             })
             .catch((err) => {
                 if (err.response.data.code === "PAT001") {
