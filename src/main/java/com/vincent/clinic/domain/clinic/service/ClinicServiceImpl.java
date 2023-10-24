@@ -33,7 +33,7 @@ public class ClinicServiceImpl implements ClinicService {
     public Paging<ClinicDto> pagingByDepartmentNo(Long departmentNo, Pageable paging) {
         Page<Clinic> result = clinicRepo.findByDepartmentNo(departmentNo, paging);
         List<ClinicDto> datas = result.getContent().stream().map(Clinic::toDto).toList();
-        return new Paging<>(datas, result.getTotalPages(), result.getTotalElements(), result.getNumber()+1);
+        return new Paging<>(datas, result.getTotalPages(), result.getTotalElements(), result.getNumber());
     }
 
     @Override

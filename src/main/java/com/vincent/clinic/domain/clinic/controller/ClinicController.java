@@ -36,11 +36,11 @@ public class ClinicController {
     @GetMapping("/{path}")
     public String departmentIndex(
             @PathVariable String path,
-            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "1") Integer size,
             Model model) {
         DepartmentDto department = departmentService.findOneByPath(path);
-        PageRequest pageRequest = PageRequest.of(page, size);
+        PageRequest pageRequest = PageRequest.of(page-1, size);
         Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(department.getNo(), pageRequest);
         model.addAttribute("name", "clinic-"+department.getPath());
         model.addAttribute("department", department);
