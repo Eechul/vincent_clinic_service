@@ -62,7 +62,7 @@
 <!--                        <span aria-hidden="true">&laquo;</span>-->
 <!--                    </a>-->
 <!--                </li>-->
-                <li class="page-item" th:if="${datas.totalPage > 0}" th:each="page : ${#numbers.sequence(1, datas.totalPage - 1)}">
+                <li class="page-item" th:if="${datas.totalPage > 0}" th:each="page : ${#numbers.sequence(1, datas.totalPage)}">
                     <a class="page-link" th:href="|/clinic/${department.path}?page=${page}|" th:classappend="${page eq datas.currentPage} ? 'active'">[[${page}]]</a>
                 </li>
 <!--                <li class="page-item">-->

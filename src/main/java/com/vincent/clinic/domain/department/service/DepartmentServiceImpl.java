@@ -22,14 +22,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @PostConstruct
     public void init() {
-        departmentRepo.saveAll(
-            Arrays.asList(
-                    Department.create("internal", "내과", "내과 입니다."),
-                    Department.create("orthopedics", "정형외과", "정형외과 입니다."),
-                    Department.create("dentist", "치과", "치과 입니다."),
-                    Department.create("obstetrics", "산부인과", "산부인과 입니다.")
-            )
-        );
+//        departmentRepo.saveAll(
+//            Arrays.asList(
+//                    Department.create("internal", "내과", "내과 입니다."),
+//                    Department.create("orthopedics", "정형외과", "정형외과 입니다."),
+//                    Department.create("dentist", "치과", "치과 입니다."),
+//                    Department.create("obstetrics", "산부인과", "산부인과 입니다.")
+//            )
+//        );
     }
 
     @Override
