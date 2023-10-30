@@ -5,21 +5,42 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2 class="h2"><u>[[${department?.name}]]</u> 진료일지</h2>
     </div>
+    <form method="get" th:action="|/clinic/${department?.path}|" onsubmit="return doSearch()">
     <div class="input-group mb-3">
-        <select class="form-select" style="flex: 0 1 200px;">
-            <option selected>검색할 열을 선택</option>
-            <option value="">환자번호</option>
-            <option value="2">환자명</option>
-            <option value="3">담당의</option>
-            <option value="3">진료일자</option>
-            <option value="3">진료내용</option>
-            <option value="3">기타</option>
+        <select id="search-column" name="col" class="form-select" style="flex: 0 1 200px;">
+            <option value="" selected>검색할 열을 선택</option>
+            <option value="patientNo">환자번호</option>
+            <option value="patientName">환자명</option>
+            <option value="doctorName">담당의</option>
+            <option value="clinicDate">진료일자</option>
+            <option value="content">진료내용</option>
+            <option value="otherContent">기타</option>
         </select>
-        <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
+            <!-- 과 + 칼럼 + 검색 으로 결과 불러와보기 -->
+        <input type="text" id="search-input" name="q" class="form-control" placeholder="" aria-label="Example text with button addon"
                aria-describedby="button-addon1">
-        <button class="btn btn-outline-secondary" type="button">검색</button>
-        <!-- 과 + 검색 으로 결과 불러와보기 -->
+        <button class="btn btn-outline-secondary" type="submit">검색</button>
+        <script type="text/javascript">
+            const doSearch = () => {
+                const column = document.getElementById("search-column").value;
+                const q = document.getElementById("search-input").value;
+                const cResult = column.trim().length !== 0;
+                const qResult = q.trim().length !== 0;
+                if (!cResult) {
+                    alert("검색할 열을 선택해주세요.");
+                    return false;
+                }
+                if (!qResult) {
+                    alert("검색 내용을 입력해주세요.");
+                    return false;
+                }
+
+                return true;
+            }
+
+        </script>
     </div>
+    </form>
     <div class="table-responsive">
         <table class="table table-hover table-sm clinic-board">
             <colgroup>

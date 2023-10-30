@@ -2,7 +2,9 @@ package com.vincent.clinic.domain.clinic.service;
 
 import com.vincent.clinic.domain.clinic.dto.ClinicAcceptServiceRequest;
 import com.vincent.clinic.domain.clinic.dto.ClinicDto;
+import com.vincent.clinic.domain.clinic.dto.ClinicServiceRequest;
 import com.vincent.clinic.domain.clinic.entity.Clinic;
+import com.vincent.clinic.domain.clinic.repository.ClinicJpaRepository;
 import com.vincent.clinic.domain.clinic.repository.ClinicRepository;
 import com.vincent.clinic.domain.department.entity.Department;
 import com.vincent.clinic.domain.department.exception.NotFoundDepartmentException;
@@ -28,10 +30,11 @@ public class ClinicServiceImpl implements ClinicService {
     private final DepartmentRepository departmentRepo;
     private final PatientService patientService;
     private final ClinicRepository clinicRepo;
+    private final ClinicJpaRepository clinicJpaRepo;
 
     @Override
-    public Paging<ClinicDto> pagingByDepartmentNo(Long departmentNo, Pageable paging) {
-        Page<Clinic> result = clinicRepo.findByDepartmentNo(departmentNo, paging);
+    public Paging<ClinicDto> pagingByDepartmentNo(Long departmentNo, ClinicServiceRequest serviceRequest) {
+        Page<Clinic> result = clinicRepo.findByDepartmentNo(departmentNo, serviceRequest.getPageRequest());
         List<ClinicDto> datas = result.getContent().stream().map(Clinic::toDto).toList();
         return new Paging<>(datas, result.getTotalPages(), result.getTotalElements(), result.getNumber()+1);
     }

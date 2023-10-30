@@ -2,11 +2,13 @@ package com.vincent.clinic.domain.clinic.controller;
 
 import com.vincent.clinic.domain.clinic.dto.ClinicAcceptRequest;
 import com.vincent.clinic.domain.clinic.dto.ClinicDto;
+import com.vincent.clinic.domain.clinic.dto.ClinicServiceRequest;
 import com.vincent.clinic.domain.clinic.service.ClinicService;
 import com.vincent.clinic.domain.department.dto.DepartmentDto;
 import com.vincent.clinic.domain.department.service.DepartmentService;
 import com.vincent.clinic.global.annotation.DController;
 import com.vincent.clinic.global.model.Paging;
+import com.vincent.clinic.global.model.SearchQ;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -36,12 +38,16 @@ public class ClinicController {
     @GetMapping("/{path}")
     public String departmentIndex(
             @PathVariable String path,
+            @RequestParam(defaultValue = "") String col,
+            @RequestParam(defaultValue = "") String q,
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "1") Integer size,
             Model model) {
         DepartmentDto department = departmentService.findOneByPath(path);
-        PageRequest pageRequest = PageRequest.of(page-1, size);
-        Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(department.getNo(), pageRequest);
+        Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(
+                department.getNo(),
+                ClinicServiceRequest.of(SearchQ.create(col, q), PageRequest.of(page-1, size))
+        );
         model.addAttribute("name", "clinic-"+department.getPath());
         model.addAttribute("department", department);
         model.addAttribute("datas", datas);
