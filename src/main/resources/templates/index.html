@@ -3,12 +3,12 @@
 <head></head>
 <main class="col-md-10 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h2 class="h2"><u>[[${department?.name}]]</u> 진료일지</h2>
+        <h2 class="h2"><u>[[${dept?.name}]]</u> 진료일지</h2>
     </div>
     <div class="input-group mb-3">
-        <a th:href="|/clinic/${department?.path}|" class="btn btn-outline-secondary" type="submit" th:if="${col ne '' || q ne ''}">검색 초기화</a>
+        <a th:href="|/clinic/${dept?.path}|" class="btn btn-outline-secondary" type="submit" th:if="${col ne '' || q ne ''}">검색 초기화</a>
     </div>
-    <form method="get" th:action="|/clinic/${department?.path}|" onsubmit="return doSearch()">
+    <form method="get" th:action="|/clinic/${dept?.path}|" onsubmit="return doSearch()">
     <div class="input-group mb-3">
         <select id="search-column" name="col" class="form-select" style="flex: 0 1 200px;">
             <option value="" th:selected="${col eq ''}">검색할 열을 선택</option>
@@ -74,7 +74,7 @@
                 <td>[[${data.content}]]</td>
                 <td>[[${data.otherContent}]]</td>
                 <td>
-                    <a th:href="|/clinic/${data.no}/edit|">EDIT</a>
+                    <a th:href="|/clinic/${data.no}/edit|">수정</a>
                 </td>
             </tr>
             </tbody>
@@ -82,7 +82,7 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination pagination-sm justify-content-center">
                 <li class="page-item" th:if="${datas.totalPage > 0}" th:each="page : ${#numbers.sequence(1, datas.totalPage)}">
-                    <a class="page-link" th:href="|/clinic/${department.path}?page=${page}&col=${col}&q=${q}|" th:classappend="${page eq datas.currentPage} ? 'active'">[[${page}]]</a>
+                    <a class="page-link" th:href="|/clinic/${dept?.path}?page=${page}&col=${col}&q=${q}|" th:classappend="${page eq datas.currentPage} ? 'active'">[[${page}]]</a>
                 </li>
             </ul>
         </nav>

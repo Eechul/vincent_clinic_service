@@ -43,13 +43,13 @@ public class ClinicController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "200") Integer size,
             Model model) {
-        DepartmentDto department = departmentService.findOneByPath(path);
+        DepartmentDto dept = departmentService.findOneByPath(path);
         Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(
-                department.getNo(),
+                dept.getNo(),
                 ClinicServiceRequest.of(SearchQ.create(col, q), PageRequest.of(page-1, size))
         );
-        model.addAttribute("name", "clinic-"+department.getPath());
-        model.addAttribute("department", department);
+        model.addAttribute("name", "clinic-"+dept.getPath());
+        model.addAttribute("dept", dept);
         model.addAttribute("col", col);
         model.addAttribute("q", q);
         model.addAttribute("datas", datas);
@@ -85,8 +85,10 @@ public class ClinicController {
     @Operation(summary = "진료일지 수정 페이지")
     @GetMapping("/{no}/edit")
     public String editView(Model model, @PathVariable Long no) {
+        ClinicDto clinic = clinicService.findOne(no);
         model.addAttribute("name", "edit");
         model.addAttribute("no", no);
+        model.addAttribute("clinic", clinic);
         return "add";
     }
 
