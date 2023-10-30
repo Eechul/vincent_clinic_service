@@ -5,19 +5,21 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2 class="h2"><u>[[${department?.name}]]</u> 진료일지</h2>
     </div>
+    <div class="input-group mb-3">
+        <a th:href="|/clinic/${department?.path}|" class="btn btn-outline-secondary" type="submit" th:if="${col ne '' || q ne ''}">검색 초기화</a>
+    </div>
     <form method="get" th:action="|/clinic/${department?.path}|" onsubmit="return doSearch()">
     <div class="input-group mb-3">
         <select id="search-column" name="col" class="form-select" style="flex: 0 1 200px;">
-            <option value="" selected>검색할 열을 선택</option>
-            <option value="patientNo">환자번호</option>
-            <option value="patientName">환자명</option>
-            <option value="doctorName">담당의</option>
-            <option value="clinicDate">진료일자</option>
-            <option value="content">진료내용</option>
-            <option value="otherContent">기타</option>
+            <option value="" th:selected="${col eq ''}">검색할 열을 선택</option>
+            <option value="patientNumber" th:selected="${col eq 'patientNumber'}">환자번호</option>
+            <option value="patientName" th:selected="${col eq 'patientName'}">환자명</option>
+            <option value="doctorName" th:selected="${col eq 'doctorName'}">담당의</option>
+            <option value="clinicDate" th:selected="${col eq 'clinicDate'}">진료일자</option>
+            <option value="content" th:selected="${col eq 'content'}">진료내용</option>
+            <option value="otherContent" th:selected="${col eq 'otherContent'}">기타</option>
         </select>
-            <!-- 과 + 칼럼 + 검색 으로 결과 불러와보기 -->
-        <input type="text" id="search-input" name="q" class="form-control" placeholder="" aria-label="Example text with button addon"
+        <input type="text" id="search-input" name="q" class="form-control" th:value="${q}" aria-label="Example text with button addon"
                aria-describedby="button-addon1">
         <button class="btn btn-outline-secondary" type="submit">검색</button>
         <script type="text/javascript">
@@ -79,19 +81,9 @@
         </table>
         <nav aria-label="Page navigation example">
             <ul class="pagination pagination-sm justify-content-center">
-<!--                <li class="page-item" >-->
-<!--                    <a class="page-link" href="#" aria-label="Previous">-->
-<!--                        <span aria-hidden="true">&laquo;</span>-->
-<!--                    </a>-->
-<!--                </li>-->
                 <li class="page-item" th:if="${datas.totalPage > 0}" th:each="page : ${#numbers.sequence(1, datas.totalPage)}">
-                    <a class="page-link" th:href="|/clinic/${department.path}?page=${page}|" th:classappend="${page eq datas.currentPage} ? 'active'">[[${page}]]</a>
+                    <a class="page-link" th:href="|/clinic/${department.path}?page=${page}&col=${col}&q=${q}|" th:classappend="${page eq datas.currentPage} ? 'active'">[[${page}]]</a>
                 </li>
-<!--                <li class="page-item">-->
-<!--                    <a class="page-link" href="#" aria-label="Next">-->
-<!--                        <span aria-hidden="true">&raquo;</span>-->
-<!--                    </a>-->
-<!--                </li>-->
             </ul>
         </nav>
     </div>

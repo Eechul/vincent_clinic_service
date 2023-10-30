@@ -41,7 +41,7 @@ public class ClinicController {
             @RequestParam(defaultValue = "") String col,
             @RequestParam(defaultValue = "") String q,
             @RequestParam(defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "1") Integer size,
+            @RequestParam(defaultValue = "200") Integer size,
             Model model) {
         DepartmentDto department = departmentService.findOneByPath(path);
         Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(
@@ -50,6 +50,8 @@ public class ClinicController {
         );
         model.addAttribute("name", "clinic-"+department.getPath());
         model.addAttribute("department", department);
+        model.addAttribute("col", col);
+        model.addAttribute("q", q);
         model.addAttribute("datas", datas);
         return "index";
     }

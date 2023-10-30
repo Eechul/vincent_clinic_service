@@ -1,5 +1,6 @@
 package com.vincent.clinic.domain.clinic.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,8 @@ public class PatientDto {
     private String name;
 
     @Builder
-    private PatientDto(Long no, Integer number, String name) {
+    @QueryProjection
+    public PatientDto(Long no, Integer number, String name) {
         this.no = no;
         this.number = number;
         this.name = name;
