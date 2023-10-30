@@ -13,6 +13,9 @@ public enum ErrorCode {
     // User
     USER_NOT_FOUND(400, "USR001", "유저를 찾을 수 없습니다."),
 
+    // Clinic
+    CLINIC_NOT_FOUND(400, "CLN001", "진료일지를 찾을 수 없습니다."),
+
     // Department
     DEPARTMENT_NOT_FOUND(400, "DEP001", "부서를 찾을 수 없습니다."),
 

@@ -13,6 +13,7 @@ import java.util.List;
 public interface ClinicService {
 
     Paging<ClinicDto> pagingByDepartmentNo(Long departmentNo, ClinicServiceRequest serviceRequest);
+    ClinicDto findOne(Long no);
     void accept(ClinicAcceptServiceRequest serviceRequest);
     void modify();
 
