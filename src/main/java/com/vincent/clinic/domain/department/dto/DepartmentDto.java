@@ -1,5 +1,6 @@
 package com.vincent.clinic.domain.department.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,14 +16,15 @@ public class DepartmentDto {
     private String description;
 
     @Builder
-    private DepartmentDto(Long no, String path, String name, String description) {
+    @QueryProjection
+    public DepartmentDto(Long no, String path, String name, String description) {
         this.no = no;
         this.path = path;
         this.name = name;
         this.description = description;
     }
 
-    public static DepartmentDto of(Long no, String path, String name, String description) {
+    public static DepartmentDto create(Long no, String path, String name, String description) {
         return DepartmentDto.builder()
                 .no(no)
                 .path(path)

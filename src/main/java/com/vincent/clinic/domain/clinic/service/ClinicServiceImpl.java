@@ -8,6 +8,7 @@ import com.vincent.clinic.domain.clinic.entity.Clinic;
 import com.vincent.clinic.domain.clinic.exception.NotFoundClinicException;
 import com.vincent.clinic.domain.clinic.repository.ClinicJpaRepository;
 import com.vincent.clinic.domain.clinic.repository.ClinicRepository;
+import com.vincent.clinic.domain.department.dto.DepartmentDto;
 import com.vincent.clinic.domain.department.entity.Department;
 import com.vincent.clinic.domain.department.exception.NotFoundDepartmentException;
 import com.vincent.clinic.domain.department.repository.DepartmentRepository;
@@ -44,11 +45,8 @@ public class ClinicServiceImpl implements ClinicService {
                 .orElseThrow(NotFoundClinicException::new);
         return ClinicDto.create(
                 result.getNo(),
-                PatientDto.create(
-                    result.getPatient().getNo(),
-                    result.getPatient().getNumber(),
-                    result.getPatient().getName())
-                ,
+                result.getPatient().toDto(),
+                result.getDepartment().toDto(),
                 result.getDoctorName(),
                 result.getClinicDate(),
                 result.getContent(),

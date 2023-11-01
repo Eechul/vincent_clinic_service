@@ -4,6 +4,8 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.DateTimePath;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.vincent.clinic.domain.clinic.dto.*;
+import com.vincent.clinic.domain.department.dto.QDepartmentDto;
+import com.vincent.clinic.domain.department.entity.QDepartment;
 import com.vincent.clinic.global.model.Paging;
 import com.vincent.clinic.global.model.SearchQ;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,10 @@ public class ClinicJpaRepository {
                         new QClinicDto(
                                 clinic.no,
                                 new QPatientDto(clinic.patient.no, clinic.patient.number, clinic.patient.name),
+                                new QDepartmentDto(
+                                    clinic.department.no, clinic.department.path,
+                                    clinic.department.name, clinic.department.description
+                                ),
                                 clinic.doctorName,
                                 clinic.clinicDate,
                                 clinic.content,

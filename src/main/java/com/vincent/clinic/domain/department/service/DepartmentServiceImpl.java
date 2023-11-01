@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,13 +38,13 @@ public class DepartmentServiceImpl implements DepartmentService {
             throw new NotFoundDepartmentException();
         }
         return departments.stream().map(department ->
-            DepartmentDto.of(department.getNo(), department.getPath(), department.getName(), department.getDescription())
+            DepartmentDto.create(department.getNo(), department.getPath(), department.getName(), department.getDescription())
         ).collect(Collectors.toList());
     }
 
     @Override
     public DepartmentDto findOneByPath(String path) {
         Department department = departmentRepo.findByPath(path).orElseThrow(NotFoundDepartmentException::new);
-        return DepartmentDto.of(department.getNo(), department.getPath(), department.getName(), department.getDescription());
+        return DepartmentDto.create(department.getNo(), department.getPath(), department.getName(), department.getDescription());
     }
 }

@@ -1,5 +1,8 @@
 package com.vincent.clinic.domain.department.entity;
 
+import com.querydsl.core.annotations.QueryProjection;
+import com.vincent.clinic.domain.clinic.dto.ClinicDto;
+import com.vincent.clinic.domain.department.dto.DepartmentDto;
 import com.vincent.clinic.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -32,6 +35,15 @@ public class Department extends BaseEntity {
         this.path = path;
         this.name = name;
         this.description = description;
+    }
+
+    public DepartmentDto toDto() {
+        return DepartmentDto.create(
+                this.no,
+                this.path,
+                this.name,
+                this.description
+        );
     }
 
     public static Department create(String path, String name, String description) {
