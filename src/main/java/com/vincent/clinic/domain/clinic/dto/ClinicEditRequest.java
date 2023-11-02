@@ -18,4 +18,8 @@ public class ClinicEditRequest {
     private LocalDate clinicDate;
     private String content;
 
+    public ClinicEditServiceRequest toService() {
+        return ClinicEditServiceRequest.of(this.clinicNo, this.patientNo, this.patientNumber, this.patientName, this.doctorName, this.clinicDate, this.content);
+    }
+
 }

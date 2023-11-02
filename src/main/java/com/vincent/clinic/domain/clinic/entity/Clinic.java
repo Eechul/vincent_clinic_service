@@ -62,6 +62,11 @@ public class Clinic extends BaseEntity {
         );
     }
 
+    public Clinic modify() {
+
+        return this;
+    }
+
     public static Clinic createAcceptance(Department department, Patient patient) {
         return Clinic.builder()
                 .department(department)

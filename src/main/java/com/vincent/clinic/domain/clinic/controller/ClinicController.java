@@ -99,7 +99,7 @@ public class ClinicController {
             @PathVariable Long no,
             ClinicEditRequest request
     ) {
-
+        clinicService.modify(request.toService());
         return "redirect:/clinic/"+no;
     }
 

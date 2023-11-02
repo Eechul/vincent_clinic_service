@@ -1,9 +1,6 @@
 package com.vincent.clinic.domain.clinic.service;
 
-import com.vincent.clinic.domain.clinic.dto.ClinicAcceptServiceRequest;
-import com.vincent.clinic.domain.clinic.dto.ClinicDto;
-import com.vincent.clinic.domain.clinic.dto.ClinicServiceRequest;
-import com.vincent.clinic.domain.clinic.dto.PatientDto;
+import com.vincent.clinic.domain.clinic.dto.*;
 import com.vincent.clinic.domain.clinic.entity.Clinic;
 import com.vincent.clinic.domain.clinic.exception.NotFoundClinicException;
 import com.vincent.clinic.domain.clinic.repository.ClinicJpaRepository;
@@ -40,17 +37,21 @@ public class ClinicServiceImpl implements ClinicService {
     }
 
     @Override
+    public Clinic findOneOrigin(Long no) {
+        return clinicRepo.findById(no).orElseThrow(NotFoundClinicException::new);
+    }
+
+    @Override
     public ClinicDto findOne(Long no) {
-        Clinic result = clinicRepo.findById(no)
-                .orElseThrow(NotFoundClinicException::new);
+        Clinic clinic = findOneOrigin(no);
         return ClinicDto.create(
-                result.getNo(),
-                result.getPatient().toDto(),
-                result.getDepartment().toDto(),
-                result.getDoctorName(),
-                result.getClinicDate(),
-                result.getContent(),
-                result.getOtherContent()
+                clinic.getNo(),
+                clinic.getPatient().toDto(),
+                clinic.getDepartment().toDto(),
+                clinic.getDoctorName(),
+                clinic.getClinicDate(),
+                clinic.getContent(),
+                clinic.getOtherContent()
         );
     }
 
@@ -72,7 +73,19 @@ public class ClinicServiceImpl implements ClinicService {
     }
 
     @Override
-    public void modify() {
+    @Transactional
+    public void modify(ClinicEditServiceRequest serviceRequest) {
+        Clinic clinic = clinicRepo.findById(serviceRequest.getClinicNo())
+                .orElseThrow(NotFoundClinicException::new);
+        Patient patient = clinic.getPatient();
+
+        // TODO
+        //  clinic 수정
+
+
+
+        // TODO
+        //  환자 수정
 
     }
 }

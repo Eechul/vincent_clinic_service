@@ -8,16 +8,24 @@ import com.vincent.clinic.domain.patient.exception.NotFoundPatientException;
 import com.vincent.clinic.domain.patient.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PatienServiceImpl implements PatientService {
 
     private final PatientRepository patientRepo;
 
     @Override
+    public Patient findOneOrigin(Long no) {
+        return patientRepo.findById(no).orElseThrow(NotFoundPatientException::new);
+    }
+
+    @Override
+    @Transactional
     public Patient save(PatientSaveServiceRequest serviceReqeust) {
         Optional<Patient> patient = patientRepo.findByNumber(serviceReqeust.getNumber());
         System.out.println(serviceReqeust.getNumber());

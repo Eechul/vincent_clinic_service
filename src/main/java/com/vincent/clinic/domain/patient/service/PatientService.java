@@ -8,6 +8,8 @@ import com.vincent.clinic.domain.patient.entity.Patient;
 
 public interface PatientService {
 
+    Patient findOneOrigin(Long no);
+
     Patient save(PatientSaveServiceRequest serviceReqeust);
 
     PatientCheckResponse checkPatient(Integer patientNumber);
