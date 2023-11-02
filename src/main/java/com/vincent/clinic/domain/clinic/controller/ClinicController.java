@@ -2,6 +2,7 @@ package com.vincent.clinic.domain.clinic.controller;
 
 import com.vincent.clinic.domain.clinic.dto.ClinicAcceptRequest;
 import com.vincent.clinic.domain.clinic.dto.ClinicDto;
+import com.vincent.clinic.domain.clinic.dto.ClinicEditRequest;
 import com.vincent.clinic.domain.clinic.dto.ClinicServiceRequest;
 import com.vincent.clinic.domain.clinic.service.ClinicService;
 import com.vincent.clinic.domain.department.dto.DepartmentDto;
@@ -94,7 +95,11 @@ public class ClinicController {
 
     @Operation(summary = "진료일지 수정")
     @PatchMapping("/{no}/edit")
-    public String edit(@PathVariable Long no) {
+    public String edit(
+            @PathVariable Long no,
+            ClinicEditRequest request
+    ) {
+
         return "redirect:/clinic/"+no;
     }
 

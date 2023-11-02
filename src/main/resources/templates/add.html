@@ -7,7 +7,7 @@
     </div>
     // 진료과 선택 후 진료일지 적게하기. 아마 접수후에 과가 지정되어 있을거임. 변걍 가능하게 하기
     <div>
-        <form>
+        <form method="PATCH" th:action="|/clinic/${clinic.no}/edit|">
             <div class="d-flex justify-content-end mb-3">
                 <th:block th:if="${no eq null}">
                     <button type="submit" class="btn btn-primary">작성</button>
