@@ -39,6 +39,12 @@ public class Patient extends BaseEntity {
         );
     }
 
+    public Patient modify(Integer number, String name) {
+        this.number = number;
+        this.name = name;
+        return this;
+    }
+
     public static Patient create(Integer number, String name) {
         return Patient.builder()
                 .number(number)

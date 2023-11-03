@@ -60,10 +60,14 @@ public class ClinicController {
     @Operation(summary = "진료일지 상세 페이지")
     @GetMapping("/{path}/{no}")
     public String clinicContent(
+            @PathVariable String path,
             @PathVariable Long no,
             Model model
     ) {
+        departmentService.findOneByPath(path);
+        ClinicDto clinic = clinicService.findOne(no);
         model.addAttribute("name", "home");
+        model.addAttribute("clinic", clinic);
         return "content";
     }
 
@@ -94,11 +98,12 @@ public class ClinicController {
     }
 
     @Operation(summary = "진료일지 수정")
-    @PatchMapping("/{no}/edit")
+    @PostMapping("/{no}/edit")
     public String edit(
             @PathVariable Long no,
             ClinicEditRequest request
     ) {
+        System.out.println(request.toString());
         clinicService.modify(request.toService());
         return "redirect:/clinic/"+no;
     }

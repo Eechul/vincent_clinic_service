@@ -78,14 +78,11 @@ public class ClinicServiceImpl implements ClinicService {
         Clinic clinic = clinicRepo.findById(serviceRequest.getClinicNo())
                 .orElseThrow(NotFoundClinicException::new);
         Patient patient = clinic.getPatient();
+        Department department = departmentRepo.findById(serviceRequest.getDepartmentNo())
+                .orElseThrow(NotFoundDepartmentException::new);
 
-        // TODO
-        //  clinic 수정
-
-
-
-        // TODO
-        //  환자 수정
-
+        patient.modify(serviceRequest.getPatientNumber(), serviceRequest.getPatientName());
+        clinic.modify(patient, department, serviceRequest.getDoctorName(),
+                serviceRequest.getClinicDate(), serviceRequest.getContent(), "");
     }
 }

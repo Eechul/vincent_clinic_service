@@ -62,8 +62,13 @@ public class Clinic extends BaseEntity {
         );
     }
 
-    public Clinic modify() {
-
+    public Clinic modify(Patient patient, Department department, String doctorName, LocalDate clinicDate, String content, String otherContent) {
+        this.patient = patient;
+        this.department = department;
+        this.doctorName = doctorName;
+        this.clinicDate = clinicDate;
+        this.content = content;
+        this.otherContent = otherContent;
         return this;
     }
 
