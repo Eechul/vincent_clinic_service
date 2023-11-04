@@ -14,7 +14,7 @@
                 </th:block>
                 <th:block th:unless="${no eq null}">
                     <button type="submit" class="btn btn-primary">수정</button>
-                    <button type="button" class="btn btn-danger ms-1">삭제</button>
+                    <button type="button" class="btn btn-danger ms-1" onclick="deleteClinic()">삭제</button>
                 </th:block>
             </div>
             <input type="hidden" name="clinicNo" th:value="${no}">
@@ -49,4 +49,11 @@
         </form>
     </div>
 </main>
+<script type="text/javascript" layout:fragment="page-script">
+    const deleteClinic = () => {
+        if (confirm("진료일지를 삭제하시겠습니까? **삭제시, 복구가 불가능 합니다**")) {
+            // ** delete action **
+        }
+    }
+</script>
 </html>
