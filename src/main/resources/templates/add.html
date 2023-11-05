@@ -7,14 +7,14 @@
     </div>
     // 진료과 선택 후 진료일지 적게하기. 아마 접수후에 과가 지정되어 있을거임. 변걍 가능하게 하기
     <div>
-        <form method="POST" th:action="|/clinic/${clinic.no}/edit|">
+        <form method="POST" th:action="|/clinic/${clinic.no}/edit|" onsubmit="return modifyContent()">
             <div class="d-flex justify-content-end mb-3">
                 <th:block th:if="${no eq null}">
                     <button type="submit" class="btn btn-primary">작성</button>
                 </th:block>
                 <th:block th:unless="${no eq null}">
                     <button type="submit" class="btn btn-primary">수정</button>
-                    <button type="button" class="btn btn-danger ms-1" onclick="deleteClinic()">삭제</button>
+                    <button type="submit" class="btn btn-danger ms-1" onclick="deleteClinic()">삭제</button>
                 </th:block>
             </div>
             <input type="hidden" name="clinicNo" th:value="${no}">
@@ -50,7 +50,47 @@
     </div>
 </main>
 <script type="text/javascript" layout:fragment="page-script">
-    const deleteClinic = () => {
+    const modifyContent = () => {
+        const chkDepartments = [];
+        document.getElementsByName("departmentNo").forEach((department) => {
+            if (department.checked) {
+                chkDepartments.push(department.value);
+            }
+        });
+        console.log(chkDepartments);
+        if (chkDepartments.length === 0) {
+            alert("과를 선택해주세요.");
+            return false;
+        }
+        let number = document.getElementById("patient-number").value.trim();
+        let patientName = document.getElementById("patient-name").value.trim();
+        let doctorName = document.getElementById("doctor-name").value.trim();
+        let clinicContent = document.getElementById("clinic-content").value.trim();
+
+        if (number === "") {
+            alert("환자번호를 입력해주세요.");
+            return false;
+        }
+        if (!isFinite(number)) {
+            alert("환자번호는 숫자만 입력해주세요.");
+            return false;
+        }
+        if (patientName === "") {
+            alert("환자명을 입력해주세요.");
+            return false;
+        }
+        if (doctorName === "") {
+            alert("담당의를 입력해주세요.");
+            return false;
+        }
+        if (clinicContent === "") {
+            alert("진료내용을 입력해주세요.");
+            return false;
+        }
+
+        return true;
+    }
+    const deleteClinic = (e) => {
         if (confirm("진료일지를 삭제하시겠습니까? **삭제시, 복구가 불가능 합니다**")) {
             // ** delete action **
         }

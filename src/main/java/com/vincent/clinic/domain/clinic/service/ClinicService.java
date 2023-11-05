@@ -18,6 +18,6 @@ public interface ClinicService {
     Clinic findOneOrigin(Long no);
     ClinicDto findOne(Long no);
     void accept(ClinicAcceptServiceRequest serviceRequest);
-    void modify(ClinicEditServiceRequest toService);
+    ClinicDto modify(ClinicEditServiceRequest toService);
 
 }

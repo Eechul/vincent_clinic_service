@@ -74,7 +74,7 @@ public class ClinicServiceImpl implements ClinicService {
 
     @Override
     @Transactional
-    public void modify(ClinicEditServiceRequest serviceRequest) {
+    public ClinicDto modify(ClinicEditServiceRequest serviceRequest) {
         Clinic clinic = clinicRepo.findById(serviceRequest.getClinicNo())
                 .orElseThrow(NotFoundClinicException::new);
         Patient patient = clinic.getPatient();
@@ -84,5 +84,6 @@ public class ClinicServiceImpl implements ClinicService {
         patient.modify(serviceRequest.getPatientNumber(), serviceRequest.getPatientName());
         clinic.modify(patient, department, serviceRequest.getDoctorName(),
                 serviceRequest.getClinicDate(), serviceRequest.getContent(), "");
+        return clinic.toDto();
     }
 }
