@@ -71,13 +71,6 @@ public class ClinicController {
         return "content";
     }
 
-    @Operation(summary = "진료일지 추가 페이지")
-    @GetMapping("/{path}/add")
-    public String addView(Model model) {
-        model.addAttribute("name", "add");
-        return "add";
-    }
-
     @Operation(summary = "접수하기")
     @PostMapping("/accept")
     public String accept(
@@ -91,7 +84,7 @@ public class ClinicController {
     @GetMapping("/{no}/edit")
     public String editView(Model model, @PathVariable Long no) {
         ClinicDto clinic = clinicService.findOne(no);
-        model.addAttribute("name", "edit");
+        model.addAttribute("name", "clinic-"+clinic.getDepartment().getPath());
         model.addAttribute("no", no);
         model.addAttribute("clinic", clinic);
         return "add";
@@ -103,15 +96,14 @@ public class ClinicController {
             @PathVariable Long no,
             ClinicEditRequest request
     ) {
-        System.out.println(request.toString());
-        clinicService.modify(request.toService());
-        return "redirect:/clinic/"+no;
+        ClinicDto clinic = clinicService.modify(request.toService());
+        return "redirect:/clinic/"+clinic.getDepartment().getPath()+"/"+no;
     }
 
     @Operation(summary = "진료일지 삭제")
     @DeleteMapping("/{no}/delete")
     public String delete(@PathVariable Long no) {
-        // 삭제
+        // 삭제, rest api로 해야하나 검토중
         return "redirect:/clinic";
     }
 }
