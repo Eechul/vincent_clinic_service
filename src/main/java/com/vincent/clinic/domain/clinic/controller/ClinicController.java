@@ -66,7 +66,7 @@ public class ClinicController {
     ) {
         departmentService.findOneByPath(path);
         ClinicDto clinic = clinicService.findOne(no);
-        model.addAttribute("name", "home");
+        model.addAttribute("name", "clinic-"+clinic.getDepartment().getPath());
         model.addAttribute("clinic", clinic);
         return "content";
     }

@@ -8,7 +8,7 @@
     <div>
         <form>
             <div class="d-flex justify-content-end mb-3">
-                <a href="/clinic/1/edit" class="btn btn-primary">수정</a>
+                <a th:href="|/clinic/${clinic.no}/edit|" class="btn btn-primary">수정</a>
             </div>
             <div class="input-group mb-3">
                 <label for="patient-name" class="input-group-text">환자번호</label>
