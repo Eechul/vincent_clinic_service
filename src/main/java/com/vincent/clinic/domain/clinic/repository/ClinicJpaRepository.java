@@ -1,12 +1,10 @@
 package com.vincent.clinic.domain.clinic.repository;
 
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.DateTimePath;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.vincent.clinic.domain.clinic.dto.*;
 import com.vincent.clinic.domain.department.dto.QDepartmentDto;
-import com.vincent.clinic.domain.department.entity.QDepartment;
-import com.vincent.clinic.global.model.Paging;
 import com.vincent.clinic.global.model.SearchQ;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,7 +24,7 @@ public class ClinicJpaRepository {
 
     private final JPAQueryFactory jpaQueryfactory;
 
-    public Page<ClinicDto> findByDepartmentNo(Long departmentNo, ClinicServiceRequest serviceRequest) {
+    public Page<ClinicDto> findBy(Long departmentNo, ClinicServiceRequest serviceRequest) {
         List<ClinicDto> datas = jpaQueryfactory.select(
                         new QClinicDto(
                                 clinic.no,
@@ -43,7 +41,7 @@ public class ClinicJpaRepository {
                 )
                 .from(clinic)
                 .where(
-                    clinic.department.no.eq(departmentNo),
+                    isEqConditionByDepartmentNo(departmentNo),
                     switchColumnQ(serviceRequest.getSearch())
                 )
                 .offset(serviceRequest.getPageRequest().getOffset())
@@ -53,12 +51,17 @@ public class ClinicJpaRepository {
         Long count = jpaQueryfactory.select(clinic.count())
                 .from(clinic)
                 .where(
-                    clinic.department.no.eq(departmentNo),
+                    isEqConditionByDepartmentNo(departmentNo),
                     switchColumnQ(serviceRequest.getSearch())
                 )
                 .fetchOne();
 
         return new PageImpl<>(datas, serviceRequest.getPageRequest(), count);
+    }
+
+    private BooleanExpression isEqConditionByDepartmentNo(Long departmentNo) {
+        if (departmentNo == null) { return null; }
+        return clinic.department.no.eq(departmentNo);
     }
 
     private BooleanExpression switchColumnQ(SearchQ searchQ) {

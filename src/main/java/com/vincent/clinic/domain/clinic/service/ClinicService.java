@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public interface ClinicService {
 
+    Paging<ClinicDto> paging(ClinicServiceRequest serviceRequest);
     Paging<ClinicDto> pagingByDepartmentNo(Long departmentNo, ClinicServiceRequest serviceRequest);
     Clinic findOneOrigin(Long no);
     ClinicDto findOne(Long no);

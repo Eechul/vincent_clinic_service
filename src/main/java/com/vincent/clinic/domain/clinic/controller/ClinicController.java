@@ -42,16 +42,14 @@ public class ClinicController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "200") Integer size,
             Model model) {
-//        Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(
-//                dept.getNo(),
-//                ClinicServiceRequest.of(SearchQ.create(col, q), PageRequest.of(page-1, size))
-//        );
-//        model.addAttribute("name", "clinic-all");
-//        model.addAttribute("dept", dept);
-//        model.addAttribute("col", col);
-//        model.addAttribute("q", q);
-//        model.addAttribute("datas", datas);
-        return "index";
+        Paging<ClinicDto> datas = clinicService.paging(
+                ClinicServiceRequest.of(SearchQ.create("patientNumber", q), PageRequest.of(page-1, size))
+        );
+        model.addAttribute("name", "clinic-all");
+        model.addAttribute("col", "patientNumber");
+        model.addAttribute("q", q);
+        model.addAttribute("datas", datas);
+        return "all";
     }
 
     @Operation(summary = "진료일지 과별 메인 페이지(목록 페이지)")

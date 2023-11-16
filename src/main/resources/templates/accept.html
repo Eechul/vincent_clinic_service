@@ -84,7 +84,7 @@
         }
         axios.post("/api/v1/patient/check", { patientNumber: Number(number) })
             .then((resp) => {
-                console.log(resp);
+                alert("기존 환자를 출력합니다.");
                 const result = resp.data.data;
                 document.getElementById("patientName").value = result.name;
                 document.getElementById("patientName").disabled = false;
