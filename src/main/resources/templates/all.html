@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head></head>
+<main class="col-md-10 ms-sm-auto col-lg-10 px-md-4" layout:fragment="content">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2 class="h2"><u>환자에 대한</u> 진료일지</h2>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover table-sm clinic-board">
+            <colgroup>
+                <col width="80px"/>
+                <col width="100px"/>
+                <col width="100px"/>
+                <col width="100px"/>
+                <col width="*"/>
+                <col width="200px"/>
+                <col width="80px"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th scope="col">환자번호</th>
+                <th scope="col">환자명</th>
+                <th scope="col">담당의</th>
+                <th scope="col">진료일자</th>
+                <th scope="col">진료내용</th>
+                <th scope="col">기타</th>
+                <th scope="col">내용 수정</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data, iter : ${datas.datas}">
+                <td><a th:href="|/clinic/${data.department.path}/${data.no}|">[[${data.patient.number}]]</a></td>
+                <td>[[${data.patient.name}]]</td>
+                <td>[[${data.doctorName}]]</td>
+                <td>[[${data.clinicDate}]]</td>
+                <td>[[${data.content}]]</td>
+                <td>[[${data.otherContent}]]</td>
+                <td>
+                    <a th:href="|/clinic/${data.no}/edit|">수정</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-sm justify-content-center">
+                <li class="page-item" th:if="${datas.totalPage > 0}" th:each="page : ${#numbers.sequence(1, datas.totalPage)}">
+                    <a class="page-link" th:href="|/clinic/all?page=${page}&col=${col}&q=${q}|" th:classappend="${page eq datas.currentPage} ? 'active'">[[${page}]]</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</main>
+</html>

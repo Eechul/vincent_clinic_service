@@ -35,6 +35,25 @@ public class ClinicController {
         return "redirect:/clinic/internal";
     }
 
+    @Operation(summary = "진료일지 전체환자 검색결과 페이지")
+    @GetMapping("/all")
+    public String departmentIndex(
+            @RequestParam(defaultValue = "") String q,
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "200") Integer size,
+            Model model) {
+//        Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(
+//                dept.getNo(),
+//                ClinicServiceRequest.of(SearchQ.create(col, q), PageRequest.of(page-1, size))
+//        );
+//        model.addAttribute("name", "clinic-all");
+//        model.addAttribute("dept", dept);
+//        model.addAttribute("col", col);
+//        model.addAttribute("q", q);
+//        model.addAttribute("datas", datas);
+        return "index";
+    }
+
     @Operation(summary = "진료일지 과별 메인 페이지(목록 페이지)")
     @GetMapping("/{path}")
     public String departmentIndex(
