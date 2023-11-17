@@ -118,9 +118,9 @@ public class ClinicController {
     }
 
     @Operation(summary = "진료일지 삭제")
-    @DeleteMapping("/{no}/delete")
+    @PostMapping("/{no}/delete")
     public String delete(@PathVariable Long no) {
-        // 삭제, rest api로 해야하나 검토중
+
         return "redirect:/clinic";
     }
 }
