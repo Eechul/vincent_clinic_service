@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +20,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentRepository departmentRepo;
 
-    @PostConstruct
-    public void init() {
+//    @PostConstruct
+//    public void init() {
 //        departmentRepo.saveAll(
 //            Arrays.asList(
 //                    Department.create("internal", "내과", "내과 입니다."),
@@ -29,7 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 //                    Department.create("obstetrics", "산부인과", "산부인과 입니다.")
 //            )
 //        );
-    }
+//    }
 
     @Override
     public List<DepartmentDto> findAll() {

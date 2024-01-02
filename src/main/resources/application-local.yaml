@@ -1,12 +1,13 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/~/joi-service;MODE=MariaDB;DATABASE_TO_LOWER=TRUE
-    username: sa
-    password:
+    url: jdbc:mariadb://14.36.168.82:3306/vincent_clinic?autoReconnect=true&useSSL=false&characterEncoding=utf-8&useUnicode=true&allowMultiQueries=true&serverTimezone=Asia/Seoul
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: vincent
+    password: quddnjs@2023
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDB103Dialect
