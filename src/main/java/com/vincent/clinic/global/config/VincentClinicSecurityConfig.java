@@ -15,15 +15,11 @@ public class VincentClinicSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(autz -> autz
-                .requestMatchers("/assets/**", "/css/**", "/fonts/**", "/js/**", "/libs/**")
-                .permitAll()
-        );
-
         http.authorizeHttpRequests((autz) -> autz
-//            .anyRequest().authenticated()
-                    .anyRequest().permitAll() // 개발중 이므로, 모든 페이지를 열어둔다.
-                )
+                .requestMatchers("/assets/**", "/css/**", "/fonts/**", "/js/**", "/libs/**", "/img/**", "/favicon.ico")
+                .permitAll()
+                .anyRequest().authenticated()
+        )
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -39,6 +35,10 @@ public class VincentClinicSecurityConfig {
                             response.sendRedirect("/login");
                         })
                         .permitAll()
+                )
+                .sessionManagement(session -> session
+                        .sessionFixation().changeSessionId()
+                        .maximumSessions(-1)
                 );
 
         return http.build();

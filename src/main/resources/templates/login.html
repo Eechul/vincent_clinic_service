@@ -2,9 +2,27 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/libs/bootstrap.min.css?v=0001" />
+    <link rel="stylesheet" href="/css/styles.css?v=0001"/>
+    <script src="/libs/bootstrap.bundle.min.js?v=0001"></script>
     <title>로그인 페이지</title>
 </head>
-<body>
+<body style="height: 100vh;">
+    <main class="login-body text-center">
+        <form class="form-signin">
+            <img class="mb-4" src="/img/logo_with_text.png" alt="">
+            <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
+            <div class="form-floating mb-1">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">아이디</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">비밀번호</label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">로그인</button>
+        </form>
+    </main>
 </body>
 </html>
