@@ -1,6 +1,5 @@
 package com.vincent.clinic.domain.clinic.repository;
 
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.vincent.clinic.domain.clinic.dto.*;
@@ -44,6 +43,7 @@ public class ClinicJpaRepository {
                     isEqConditionByDepartmentNo(departmentNo),
                     switchColumnQ(serviceRequest.getSearch())
                 )
+                .orderBy(clinic.no.desc())
                 .offset(serviceRequest.getPageRequest().getOffset())
                 .limit(serviceRequest.getPageRequest().getPageSize())
                 .fetch();
