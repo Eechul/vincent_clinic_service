@@ -4,5 +4,6 @@ import com.vincent.clinic.domain.user.entity.User;
 
 public interface UserService {
 
-    User findById(Long id);
+    User findByNo(Long no);
+    User findByUserId(String userId);
 }
