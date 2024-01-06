@@ -28,6 +28,4 @@ public class User extends BaseEntity {
     @Column(name = "LAST_LOGIN_AT")
     private LocalDateTime lastLoginAt;
 
-    @Column(name = "CREATE_AT")
-    private LocalDateTime createAt;
 }
