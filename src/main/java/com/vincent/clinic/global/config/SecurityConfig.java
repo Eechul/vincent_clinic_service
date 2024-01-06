@@ -17,7 +17,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((autz) -> autz
                 .requestMatchers("/assets/**", "/css/**", "/fonts/**", "/js/**", "/libs/**", "/img/**", "/favicon.ico")
                 .permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
         )
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
