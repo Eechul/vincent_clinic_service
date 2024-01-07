@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @DController
 @RequestMapping("/")
-public class HomeController {
+public class HomeController extends BaseController {
 
     @GetMapping("")
     public String index() {
-        return "redirect:/clinic";
+        return redirect("/clinic");
     }
 }

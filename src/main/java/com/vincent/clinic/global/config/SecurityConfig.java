@@ -17,21 +17,18 @@ public class SecurityConfig {
         http.authorizeHttpRequests((autz) -> autz
                 .requestMatchers("/assets/**", "/css/**", "/fonts/**", "/js/**", "/libs/**", "/img/**", "/favicon.ico")
                 .permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
         )
                 .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/clinic")
-                        .failureUrl("/login")
+                        .failureUrl("/login?error=true")
                         .usernameParameter("userId")
                         .passwordParameter("userPwd")
                         .successHandler(((request, response, authentication) -> {
                             response.sendRedirect("/clinic");
                         }))
-                        .failureHandler((request, response, exception) -> {
-                            response.sendRedirect("/login");
-                        })
                         .permitAll()
                 )
                 .logout(logout -> logout

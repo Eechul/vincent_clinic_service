@@ -2,14 +2,16 @@ package com.vincent.clinic.domain.user.dto;
 
 import com.vincent.clinic.domain.user.entity.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 
 public class PrincipalDetails implements UserDetails {
 
-    private User user;
+    private final User user;
 
     public PrincipalDetails(User user) {
         this.user = user;
@@ -17,7 +19,12 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Collection<GrantedAuthority> collections = new ArrayList<>();
+
+        for (String role : user.getRole().split(",")) {
+            collections.add(new SimpleGrantedAuthority(role));
+        }
+        return collections;
     }
 
     @Override
