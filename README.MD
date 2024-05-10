@@ -29,19 +29,18 @@
 |                                          개발                                           |                                                                   기획 & 인프라                                                                    |
 |:-------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
 | <img src="https://avatars.githubusercontent.com/u/18659603?v=4" width=200px alt="나"/> |                           <img src="https://avatars.githubusercontent.com/u/65863017?v=4" width="200px" alt="최**"/>                           |
-|                            [나](https://github.com/Eechul)                             |                                      [ChoiGodpa](https://avatars.githubusercontent.com/u/144204347?v=4)                                       |          
+|                            [나](https://github.com/Eechul)                             |                                      [ChoiGodpa](https://github.com/ChoiGodpa)                                       |          
 
 
 ## 📝 메모
 - 규모는 작은 사이드 프로젝트 정도입니다. 
-- 그래서 부담이 없으면서 안써본 기술 및 보조도구를 써보려 노력합니다.
-- [gitmoji](https://gitmoji.dev/) 를 처음 써봅니다.
+- 그래서 부담이 앖고 사용해보지 못한 기술 및 보조도구를 써보려 노력합니다.
 
 ## ⚙️ 기술 스택
-- 프론트: thymleaf, html, css, javascript(vanilla.js)
-- 백엔드: spring boot, spring security, jpa, querydsl, springDocs-openapi(+swagger-ui), junit
+- 프론트: Thymleaf, HTML, CSS3, Javascript(vanilla.js)
+- 백엔드: Spring Boot, Spring Security, JPA, Querydsl, SpringDocs-openapi(+Swagger UI), JUnit
 - 인프라: 윈도우PC(윈도우10) 환경
-- 데이터베이스: mysql
+- 데이터베이스: Mysql
 
 
 
