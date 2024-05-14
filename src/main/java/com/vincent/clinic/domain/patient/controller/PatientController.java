@@ -2,6 +2,7 @@ package com.vincent.clinic.domain.patient.controller;
 
 import com.vincent.clinic.domain.department.service.DepartmentService;
 import com.vincent.clinic.global.annotation.DController;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class PatientController {
 
-    private final DepartmentService departmentService;
-
+    @Operation(summary = "환자 접수하기 페이지")
     @GetMapping("/accept")
     public String accept(
             Model model
@@ -26,6 +26,7 @@ public class PatientController {
         return "accept";
     }
 
+    @Operation(summary = "환자 접수완료 페이지")
     @GetMapping("/accept/success")
     public String acceptConfirm(
             Model model,
