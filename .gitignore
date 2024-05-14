@@ -38,4 +38,4 @@ out/
 
 
 ### spring profile ###
-src/main/resources/application-local.yaml
+application-local.yaml
