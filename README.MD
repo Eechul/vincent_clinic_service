@@ -37,10 +37,10 @@
 - 그래서 부담이 앖고 사용해보지 못한 기술 및 보조도구를 써보려 노력합니다.
 
 ## ⚙️ 기술 스택
-- 프론트: Thymleaf, HTML, CSS3, Javascript(vanilla.js)
+- 프론트엔드: Thymleaf, HTML, CSS3, Javascript(vanilla.js)
 - 백엔드: Spring Boot, Spring Security, JPA, Querydsl, SpringDocs-openapi(+Swagger UI), JUnit
 - 인프라: 윈도우PC(윈도우10) 환경
-- 데이터베이스: Mysql
+- 데이터베이스: MariaDB
 
 
 
