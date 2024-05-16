@@ -21,7 +21,7 @@
 * 백엔드 개발(나 **[완]**)
 * 인프라 개발(ChoiGodpa **[완]**)
 * 배포
-* 회고
+* [회고](https://github.com/Eechul/vincent_clinic_service/blob/main/RETROSPECTIVE.MD)
 
 
 
