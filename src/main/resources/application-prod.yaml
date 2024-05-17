@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://${DB_URL}?autoReconnect=true&useSSL=false&characterEncoding=utf-8&useUnicode=true&allowMultiQueries=true&serverTimezone=Asia/Seoul
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDB103Dialect
+        show_sql: true
+        format_sql: true
+
+  thymeleaf:
+    cache: false
+
+server:
+  port: 3300
