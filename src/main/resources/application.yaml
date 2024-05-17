@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: ${PROFILE}
+
+server:
+  servlet:
+    session:
+      timeout: 720m      # 60m * 12h
+      cookie:
+        max-age: 720m    # 60m * 12h
+        name: SID
+        http-only: true
+        secure: true
