@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController extends BaseController {
 
     @GetMapping("/login")
-    public String login(Authentication authentication) {
+    public String login(final Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
             return redirect("/clinic");
         }
