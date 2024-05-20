@@ -38,9 +38,9 @@ public class ClinicController {
     @Operation(summary = "진료일지 전체환자 검색결과 페이지")
     @GetMapping("/all")
     public String departmentIndex(
-            @RequestParam(defaultValue = "") String q,
-            @RequestParam(defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "200") Integer size,
+            @RequestParam(defaultValue = "") final String q,
+            @RequestParam(defaultValue = "1") final Integer page,
+            @RequestParam(defaultValue = "200") final Integer size,
             Model model) {
         Paging<ClinicDto> datas = clinicService.paging(
                 ClinicServiceRequest.of(SearchQ.create("patientNumber", q), PageRequest.of(page-1, size))
@@ -56,10 +56,10 @@ public class ClinicController {
     @GetMapping("/{path}")
     public String departmentIndex(
             @PathVariable String path,
-            @RequestParam(defaultValue = "") String col,
-            @RequestParam(defaultValue = "") String q,
-            @RequestParam(defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "200") Integer size,
+            @RequestParam(defaultValue = "") final String col,
+            @RequestParam(defaultValue = "") final String q,
+            @RequestParam(defaultValue = "1") final Integer page,
+            @RequestParam(defaultValue = "200") final Integer size,
             Model model) {
         DepartmentDto dept = departmentService.findOneByPath(path);
         Paging<ClinicDto> datas = clinicService.pagingByDepartmentNo(
@@ -76,11 +76,7 @@ public class ClinicController {
 
     @Operation(summary = "진료일지 상세 페이지")
     @GetMapping("/{path}/{no}")
-    public String clinicContent(
-            @PathVariable String path,
-            @PathVariable Long no,
-            Model model
-    ) {
+    public String clinicContent(@PathVariable final String path, @PathVariable final Long no, final Model model) {
         departmentService.findOneByPath(path);
         ClinicDto clinic = clinicService.findOne(no);
         model.addAttribute("name", "clinic-"+clinic.getDepartment().getPath());
@@ -90,16 +86,14 @@ public class ClinicController {
 
     @Operation(summary = "접수하기")
     @PostMapping("/accept")
-    public String accept(
-            ClinicAcceptRequest request,
-            Model model) throws UnsupportedEncodingException {
+    public String accept(final ClinicAcceptRequest request) throws UnsupportedEncodingException {
         clinicService.accept(request.toService());
         return "redirect:/patient/accept/success?patientName="+URLEncoder.encode(request.getPatientName(), "UTF-8");
     }
 
     @Operation(summary = "진료일지 수정 페이지")
     @GetMapping("/{no}/edit")
-    public String editView(Model model, @PathVariable Long no) {
+    public String editView(final Model model, @PathVariable final Long no) {
         ClinicDto clinic = clinicService.findOne(no);
         model.addAttribute("name", "clinic-"+clinic.getDepartment().getPath());
         model.addAttribute("no", no);
@@ -109,18 +103,15 @@ public class ClinicController {
 
     @Operation(summary = "진료일지 수정")
     @PostMapping("/{no}/edit")
-    public String edit(
-            @PathVariable Long no,
-            ClinicEditRequest request
-    ) {
+    public String edit(@PathVariable final Long no, final ClinicEditRequest request) {
         ClinicDto clinic = clinicService.modify(request.toService());
         return "redirect:/clinic/"+clinic.getDepartment().getPath()+"/"+no;
     }
 
+    // TODO: 진료일지 삭제 기능 구현하기
     @Operation(summary = "진료일지 삭제")
     @PostMapping("/{no}/delete")
-    public String delete(@PathVariable Long no) {
-
+    public String delete(final @PathVariable Long no) {
         return "redirect:/clinic";
     }
 }
