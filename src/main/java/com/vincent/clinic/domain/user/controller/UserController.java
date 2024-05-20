@@ -12,15 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class UserController extends BaseController {
 
-//    private final BCryptPasswordEncoder passwordEncoder;
-
     @GetMapping("/login")
     public String login(Authentication authentication) {
-//        System.out.println(passwordEncoder.encode("qwer12@"));
         if (authentication != null && authentication.isAuthenticated()) {
             return redirect("/clinic");
         }
-
         return "login";
     }
 
