@@ -1,6 +1,5 @@
 package com.vincent.clinic.domain.patient.controller;
 
-import com.vincent.clinic.domain.department.service.DepartmentService;
 import com.vincent.clinic.domain.patient.dto.PatientCheckRequest;
 import com.vincent.clinic.domain.patient.dto.PatientCheckResponse;
 import com.vincent.clinic.domain.patient.service.PatientService;
@@ -10,7 +9,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Tag(name = "Patient", description = "환자에 관한 REST API")
 @DRestController
