@@ -26,7 +26,7 @@ public class PatientController {
 
     @Operation(summary = "환자 접수완료 페이지")
     @GetMapping("/accept/success")
-    public String acceptConfirm(@RequestParam String patientName, final Model model) {
+    public String acceptConfirm(final @RequestParam String patientName, final Model model) {
         model.addAttribute("name", "patient-accept");
         model.addAttribute("patientName", patientName);
         return "accept-confirm";
