@@ -12,7 +12,7 @@ public class UserController {
     @GetMapping("/login")
     public String login(final Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
-            return "redirect/clinic";
+            return "redirect:/clinic";
         }
         return "login";
     }
