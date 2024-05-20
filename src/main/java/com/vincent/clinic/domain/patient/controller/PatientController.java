@@ -19,19 +19,14 @@ public class PatientController {
 
     @Operation(summary = "환자 접수하기 페이지")
     @GetMapping("/accept")
-    public String accept(
-            Model model
-    ) {
+    public String accept(final Model model) {
         model.addAttribute("name", "patient-accept");
         return "accept";
     }
 
     @Operation(summary = "환자 접수완료 페이지")
     @GetMapping("/accept/success")
-    public String acceptConfirm(
-            Model model,
-            @RequestParam String patientName
-    ) {
+    public String acceptConfirm(@RequestParam String patientName, final Model model) {
         model.addAttribute("name", "patient-accept");
         model.addAttribute("patientName", patientName);
         return "accept-confirm";
