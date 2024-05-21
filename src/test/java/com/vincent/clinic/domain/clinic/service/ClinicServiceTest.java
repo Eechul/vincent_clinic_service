@@ -6,7 +6,6 @@ import com.vincent.clinic.domain.clinic.entity.Clinic;
 import com.vincent.clinic.domain.clinic.repository.ClinicRepository;
 import com.vincent.clinic.domain.department.entity.Department;
 import com.vincent.clinic.domain.department.repository.DepartmentRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,8 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ClinicServiceTest extends GenerateIntegrationTest {
 
@@ -73,6 +71,27 @@ class ClinicServiceTest extends GenerateIntegrationTest {
         assertThat(clinics.get(0).getDepartment()).extracting("no", "name").containsExactly(1L, "내과");
         assertThat(clinics.get(1).getPatient()).extracting("number", "name").containsExactly("19999", "김철수");
         assertThat(clinics.get(1).getDepartment()).extracting("no", "name").containsExactly(2L, "정형외과");
+    }
+
+    @DisplayName("접수된 진료 하나를 삭제할 수 있다.")
+    @Test
+    void deleteClinic() {
+        // given
+        ClinicAcceptServiceRequest serviceRequest = ClinicAcceptServiceRequest.builder()
+                .department(List.of(1L, 2L))
+                .patientNumber(19999)
+                .patientName("김철수")
+                .build();
+        clinicService.accept(serviceRequest);
+        List<Clinic> originClinics = clinicRepo.findAll();
+        assertThat(originClinics).isNotNull().hasSize(2);
+
+        // when
+        clinicService.delete(originClinics.get(0).getNo());
+        List<Clinic> refreshClinics = clinicRepo.findAll();
+
+        // then
+        assertThat(refreshClinics).isNotNull().hasSize(1);
     }
 
     public List<Department> departments() {
