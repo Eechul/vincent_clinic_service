@@ -30,13 +30,13 @@ public class ClinicServiceImpl implements ClinicService {
     private final ClinicJpaRepository clinicJpaRepo;
 
     @Override
-    public Paging<ClinicDto> paging(ClinicServiceRequest serviceRequest) {
+    public Paging<ClinicDto> paging(final ClinicServiceRequest serviceRequest) {
         Page<ClinicDto> result = clinicJpaRepo.findBy(null, serviceRequest);
         return new Paging<>(result.getContent(), result.getTotalPages(), result.getTotalElements(), result.getNumber()+1);
     }
 
     @Override
-    public Paging<ClinicDto> pagingByDepartmentNo(Long departmentNo, ClinicServiceRequest serviceRequest) {
+    public Paging<ClinicDto> pagingByDepartmentNo(final Long departmentNo, final ClinicServiceRequest serviceRequest) {
         Page<ClinicDto> result = clinicJpaRepo.findBy(departmentNo, serviceRequest);
         return new Paging<>(result.getContent(), result.getTotalPages(), result.getTotalElements(), result.getNumber()+1);
     }
@@ -47,7 +47,7 @@ public class ClinicServiceImpl implements ClinicService {
     }
 
     @Override
-    public ClinicDto findOne(Long no) {
+    public ClinicDto findOne(final Long no) {
         Clinic clinic = findOneOrigin(no);
         return ClinicDto.create(
                 clinic.getNo(),
@@ -62,7 +62,7 @@ public class ClinicServiceImpl implements ClinicService {
 
     @Override
     @Transactional
-    public void accept(ClinicAcceptServiceRequest serviceRequest) {
+    public void accept(final ClinicAcceptServiceRequest serviceRequest) {
         List<Department> departments = departmentRepo.findAllById(serviceRequest.getDepartment());
         if (departments.isEmpty()) { throw new NotFoundDepartmentException(); }
 
@@ -79,7 +79,7 @@ public class ClinicServiceImpl implements ClinicService {
 
     @Override
     @Transactional
-    public ClinicDto modify(ClinicEditServiceRequest serviceRequest) {
+    public ClinicDto modify(final ClinicEditServiceRequest serviceRequest) {
         Clinic clinic = clinicRepo.findById(serviceRequest.getClinicNo())
                 .orElseThrow(NotFoundClinicException::new);
         Patient patient = clinic.getPatient();
