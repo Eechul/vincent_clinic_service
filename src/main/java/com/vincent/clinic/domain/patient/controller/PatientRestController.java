@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class PatientRestController {
 
-    private final DepartmentService departmentService;
     private final PatientService patientService;
 
     @Operation(summary = "환자 접수 전, 기존 환자 체크")
