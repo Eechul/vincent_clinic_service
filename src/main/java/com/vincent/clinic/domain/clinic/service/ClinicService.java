@@ -6,10 +6,7 @@ import com.vincent.clinic.domain.clinic.dto.ClinicEditServiceRequest;
 import com.vincent.clinic.domain.clinic.dto.ClinicServiceRequest;
 import com.vincent.clinic.domain.clinic.entity.Clinic;
 import com.vincent.clinic.global.model.Paging;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public interface ClinicService {
@@ -20,5 +17,5 @@ public interface ClinicService {
     ClinicDto findOne(Long no);
     void accept(ClinicAcceptServiceRequest serviceRequest);
     ClinicDto modify(ClinicEditServiceRequest toService);
-
+    void delete(Long no);
 }

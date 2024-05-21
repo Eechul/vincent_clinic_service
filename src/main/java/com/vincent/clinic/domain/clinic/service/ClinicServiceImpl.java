@@ -91,4 +91,10 @@ public class ClinicServiceImpl implements ClinicService {
                 serviceRequest.getClinicDate(), serviceRequest.getContent(), "");
         return clinic.toDto();
     }
+
+    @Override
+    @Transactional
+    public void delete(final Long no) {
+        clinicRepo.deleteById(no);
+    }
 }
