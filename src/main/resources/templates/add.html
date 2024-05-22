@@ -89,14 +89,19 @@
 
         return true;
     }
-    const deleteClinic = (e) => {
+    const deleteClinic = (clinicNo) => {
         if (confirm("진료일지를 삭제하시겠습니까? **삭제시, 복구가 불가능 합니다**")) {
             const form = document.createElement("form");
+            const hiddenField = document.createElement("input");
             form.setAttribute("charset", "UTF-8");
-            form.setAttribute("method", "POST");  //Post 방식
-            form.setAttribute("action", "/clinic/"+1+"/delete"); //요청 보낼 주소
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", `/clinic/${clinicNo}/delete`);
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "_method");
+            hiddenField.setAttribute("value", "DELETE");
+            form.appendChild(hiddenField);
             document.body.appendChild(form);
-
+            form.submit();
         }
     }
 </script>

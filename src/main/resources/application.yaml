@@ -1,7 +1,10 @@
 spring:
   profiles:
     active: ${PROFILE}
-
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
 server:
   servlet:
     session:

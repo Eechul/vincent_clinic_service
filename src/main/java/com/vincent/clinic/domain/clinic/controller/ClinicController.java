@@ -107,10 +107,11 @@ public class ClinicController {
         return "redirect:/clinic/"+clinic.getDepartment().getPath()+"/"+no;
     }
 
-    // TODO: 진료일지 삭제 기능 구현하기
     @Operation(summary = "진료일지 삭제")
-    @PostMapping("/{no}/delete")
+    @DeleteMapping("/{no}/delete")
     public String delete(final @PathVariable Long no) {
-        return "redirect:/clinic";
+        ClinicDto existClinic = clinicService.findOne(no);
+        clinicService.delete(no);
+        return "redirect:/clinic/"+existClinic.getDepartment().getPath();
     }
 }
