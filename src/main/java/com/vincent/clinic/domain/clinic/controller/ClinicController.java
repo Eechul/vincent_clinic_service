@@ -17,8 +17,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 @Tag(name = "Clinic", description = "진료일지에 관한 API")
 @DController
@@ -85,9 +85,10 @@ public class ClinicController {
 
     @Operation(summary = "접수하기")
     @PostMapping("/accept")
-    public String accept(final ClinicAcceptRequest request) throws UnsupportedEncodingException {
+    public String accept(final ClinicAcceptRequest request) {
         clinicService.accept(request.toService());
-        return "redirect:/patient/accept/success?patientName="+URLEncoder.encode(request.getPatientName(), "UTF-8");
+        return "redirect:/patient/accept/success?patientName="
+                +URLEncoder.encode(request.getPatientName(), StandardCharsets.UTF_8);
     }
 
     @Operation(summary = "진료일지 수정 페이지")
@@ -114,4 +115,5 @@ public class ClinicController {
         clinicService.delete(no);
         return "redirect:/clinic/"+existClinic.getDepartment().getPath();
     }
+
 }
