@@ -10,7 +10,7 @@ import java.util.List;
 
 public class VincentCinicInterceptor implements HandlerInterceptor {
 
-    private DepartmentService departmentService;
+    private final DepartmentService departmentService;
 
     public VincentCinicInterceptor(DepartmentService departmentService) {
         this.departmentService = departmentService;
