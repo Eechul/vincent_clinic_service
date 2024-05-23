@@ -24,7 +24,6 @@ public class ClinicControllerTest {
     @MockBean
     private ClinicService clinicService;
 
-
     @BeforeEach
     void setUp() { }
 
