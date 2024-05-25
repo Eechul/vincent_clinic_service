@@ -35,4 +35,11 @@ public class ClinicControllerTest {
                 .andExpect(redirectedUrl("/clinic/internal"));
     }
 
+    // 테스트 전에 로그인이 완료된 상태여야 함(세션 저장). security test와 결합할 방법 찾아보기
+
+    // 추가할 API Test
+    // - 진료과 별 진료리스트
+    // - 진료 전체검색 결과리스트
+    // - 로그아웃
+
 }
