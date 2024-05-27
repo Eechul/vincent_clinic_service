@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -29,6 +30,7 @@ public class ClinicControllerTest {
 
     @DisplayName("진료일지 루트 접근 시, /clinic/internal 로 리다이렉트 한다.")
     @Test
+    @WithMockUser
     public void testIndex() throws Exception {
         mockMvc.perform(get("/clinic"))
                 .andExpect(status().is3xxRedirection())
