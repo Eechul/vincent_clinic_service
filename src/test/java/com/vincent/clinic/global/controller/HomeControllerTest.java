@@ -10,6 +10,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -29,6 +30,14 @@ public class HomeControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/clinic"));
+    }
+
+    @DisplayName("로그인 하지 않고 루트 접근 시, /login 으로 리다이렉트 한다.")
+    @Test
+    public void testIndexRedirectionLogin() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
     }
 
 }
