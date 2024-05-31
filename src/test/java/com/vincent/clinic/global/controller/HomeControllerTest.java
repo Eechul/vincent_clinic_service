@@ -32,6 +32,8 @@ public class HomeControllerTest {
                 .andExpect(redirectedUrl("/clinic"));
     }
 
+    // 문제점. response가 401이 뜬다. 브라우저에서 접속한 결과와는 다르게 나옴.
+    // 스프링 시큐리티 관련 설정 때문일까?
     @DisplayName("로그인 하지 않고 루트 접근 시, /login 으로 리다이렉트 한다.")
     @Test
     public void testIndexRedirectionLogin() throws Exception {
