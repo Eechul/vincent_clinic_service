@@ -26,7 +26,13 @@ public class ClinicControllerTest {
     private ClinicService clinicService;
 
     @BeforeEach
-    void setUp() { }
+    void setUp() {
+//        INSERT INTO vc_department(description, name, path, created_at) VALUES('내과 입니다.', '내과', 'internal', NOW());
+//        INSERT INTO vc_department(description, name, path, created_at) VALUES('정형외과 입니다.', '정형외과', 'orthopedics', NOW());
+//        INSERT INTO vc_department(description, name, path, created_at) VALUES('치과 입니다.', '치과', 'dentist', NOW());
+//        INSERT INTO vc_department(description, name, path, created_at) VALUES('산부인과 입니다.', '산부인과', 'obstetrics', NOW());
+        // setup에서 처음에 과를 등록
+    }
 
     @DisplayName("진료일지 루트 접근 시, /clinic/internal 로 리다이렉트 한다.")
     @Test
@@ -37,11 +43,18 @@ public class ClinicControllerTest {
                 .andExpect(redirectedUrl("/clinic/internal"));
     }
 
-    // 테스트 전에 로그인이 완료된 상태여야 함(세션 저장). security test와 결합할 방법 찾아보기
+    @DisplayName("과별 진료리스트 페이지에 접근 가능하다.")
+    @Test
+    @WithMockUser
+    public void testClinicDepartment() throws Exception {
+        // setup에서 등록한 과들을 검증하자.
+        mockMvc.perform(get("/clinic/internal"))
+                .andExpect(status().isOk());
+    }
+
 
     // 추가할 API Test
     // - 진료과 별 진료리스트
     // - 진료 전체검색 결과리스트
-    // - 로그아웃
 
 }
