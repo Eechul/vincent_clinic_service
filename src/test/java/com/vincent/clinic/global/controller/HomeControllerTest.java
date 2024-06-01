@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
@@ -27,19 +27,17 @@ public class HomeControllerTest {
     @Test
     @WithMockUser
     public void testIndex() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/"))
+        mockMvc.perform(get("/"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/clinic"));
     }
 
-    // 문제점. response가 401이 뜬다. 브라우저에서 접속한 결과와는 다르게 나옴.
-    // 스프링 시큐리티 관련 설정 때문일까?
-    @DisplayName("로그인 하지 않고 루트 접근 시, /login 으로 리다이렉트 한다.")
+    @DisplayName("로그인 하지 않고 루트 접근 시, status 401을 리턴한다.")
     @Test
+    @WithAnonymousUser
     public void testIndexRedirectionLogin() throws Exception {
         mockMvc.perform(get("/"))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/login"));
+                .andExpect(status().isUnauthorized());
     }
 
 }
